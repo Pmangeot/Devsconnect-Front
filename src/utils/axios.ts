@@ -3,7 +3,7 @@ import axios from 'axios';
 import logout from '../store/actions/logout';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: 'http://mapi2982.odns.fr',
   headers: {
     'content-type': 'application/json',
   },
