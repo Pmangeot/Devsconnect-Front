@@ -1,0 +1,643 @@
+@use '../../../../styles/variables' as v;
+@use '../../../../styles/mixins' as m; // @include pour utiliser
+
+.CreateProject {
+    flex-grow: 1; // Pour que le container prenne toute la place disponible
+    position: relative; // Pour positionner le bouton retour
+    margin: 0 auto; // Pour centrer le container
+    //? Bouton retour
+    &--return {
+        position: absolute;
+        top: 2%;
+        right: 0;
+        & button {
+            padding: v.$font-xxsmall v.$font-large;
+            background: v.$color;
+            color: v.$color-darkest;
+            border-radius: v.$border-radius;
+            font-weight: 700;
+            cursor: pointer;
+            &:hover {
+                background: v.$color-darkest;
+                color: v.$color;
+            }
+        }
+    }
+    // ? Sous titre
+    &--legend {
+        color: v.$color-darkest;
+        text-decoration: underline;
+        font-weight: 700;
+    }
+    // ? En-tête
+    &--header {
+        //? Titre
+        &--title {
+            color: v.$color-darkest;
+            text-align: center;
+        }
+    }
+    //* Formulaire
+    & fieldSet {
+        border: none;
+        display: flex;
+        flex-direction: column;
+    }
+    &--firstField {
+        &--description {
+            // Réglages dans les media queries
+        }
+        &--openToWork {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    &--secondField {
+        //* Partie languages
+        //? Technos
+        &--text {
+            text-align: left;
+        }
+        &--technos {
+            //? Liste des technos
+            display: grid;
+            background-color: v.$color-input;
+            border-radius: v.$border-radius;
+            color: v.$color-darkest;
+            opacity: 0.9;
+            &--group,
+            &--group--selected {
+                //? Bloc image + texte
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                & p {
+                    font-weight: 700;
+                }
+                &--selected {
+                    background-color: rgb(91, 166, 91, 0.2);
+                    border-radius: v.$border-radius;
+                }
+            }
+        }
+    }
+    &--thirdField {
+        &--noWanted {
+            margin: v.$font-small 0;
+            font-style: italic;
+            list-style: none;
+            text-align: center;
+            color: rgb(125, 10, 10);
+            border-radius: 1.3rem;
+            font-weight: 700;
+        }
+        &--container {
+            background-color: v.$color-input;
+            border-radius: v.$border-radius;
+            color: v.$color-darkest;
+            font-weight: 700;
+            opacity: 0.9;
+            &--users {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                &--text {
+                    white-space: nowrap; //* Empêche le retour à la ligne
+                    overflow: hidden; //* Cache le contenu dépassant du cadre
+                    text-overflow: ellipsis; //* Ajoute des points de suspension
+                }
+                &--img-bloc {
+                    display: flex;
+                    &--img {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    &--fourthField {
+        //* Partie boutons
+        display: flex;
+        align-items: center;
+        //? Bouton Valider
+        &--submit,
+        &--delete {
+            border-radius: v.$border-radius;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        &--submit {
+            background: green;
+            border: 0.2rem solid green;
+        }
+        &--delete {
+            background: rgb(125, 26, 26);
+            border: 0.2rem solid rgb(125, 26, 26);
+        }
+    }
+
+    @media screen and (min-width: v.$mq-large) {
+        width: 95%; // Largeur du container
+        max-width: 90rem; // Largeur max du container
+        font-size: v.$font-medium; // Taille de la police
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-small;
+            padding: 0 v.$font-large; // Espace entre le titre et le container
+            font-size: v.$font-medium;
+        }
+        // ? En-tête
+        &--header {
+            margin-top: 8rem;
+            //? Titre
+            &--title {
+                font-size: v.$font-large;
+            }
+        }
+        //* Formulaire
+        &--firstField,
+        &--secondField {
+            padding: v.$font-xsmall;
+        }
+        &--firstField {
+            &--description {
+                width: 100%; // Pour que la largeur soit égale à celle de la partie 1
+            }
+            &--openToWork {
+                //? 4eme partie
+                margin: v.$font-xsmall 0;
+                &--text {
+                    padding-right: v.$font-small;
+                }
+            }
+        }
+        &--secondField {
+            //* Partie languages
+            //? Technos
+            // margin: v.$font-small 0;
+            &--text {
+                padding: 0 v.$font-large; // Espace entre le titre et le container
+                font-size: v.$font-small - 0.2;
+            }
+            &--technos {
+                //? Liste des technos
+                grid-template-columns: repeat(3, 1fr); // 3 languages par lignes
+                // margin: v.$font-medium 0;
+                padding: 0 v.$font-medium;
+                &--group,
+                &--group--selected {
+                    //? Bloc image + texte
+                    gap: v.$font-medium;
+                    margin: v.$font-xsmall 0;
+                    font-size: v.$font-small;
+
+                    & img {
+                        width: v.$font-medium;
+                        height: v.$font-medium;
+                    }
+                    &--selected {
+                        padding: 0.3rem v.$font-xsmall;
+                        width: 80%;
+                        border: 2px solid rgb(91, 166, 91);
+                    }
+                }
+            }
+        }
+        &--thirdField {
+            padding: v.$font-xsmall;
+
+            &--container {
+                padding: 0 v.$font-medium;
+                width: 60%;
+                &--users {
+                    margin: 0 v.$font-xlarge;
+                    padding: v.$font-xxsmall 0;
+                    width: 80%;
+                    &--text {
+                        margin-right: v.$font-medium;
+                        width: 70%;
+                        font-size: v.$font-small;
+                    }
+                    &--img-bloc {
+                        width: 30%;
+                        &--img {
+                            margin-left: 2rem;
+                            width: 3rem;
+                            height: 3rem;
+                        }
+                    }
+                }
+            }
+        }
+        &--fourthField {
+            //* Partie boutons
+            margin: 0 0 v.$font-large 0; // Pour espacer le bloc en hauteur
+            //? Bouton Valider
+            &--submit,
+            &--delete {
+                margin-top: v.$font-small;
+                padding: v.$font-xsmall v.$font-large; // Pour agrandir la surface du bouton
+                width: 55rem;
+                border-radius: v.$border-radius; // Pour rendre droit la face commune avec annuler
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-large) {
+        width: 95%; // Largeur du container
+        max-width: 75rem; // Largeur du container
+        font-size: v.$font-small; // Taille de la police
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-small;
+            font-size: v.$font-medium;
+        }
+        // ? En-tête
+        &--header {
+            margin: v.$font-small 0;
+            margin-top: 6rem;
+            //? Titre
+            &--title {
+                font-size: v.$font-large;
+            }
+        }
+        //* Formulaire
+        &--firstField {
+            //* Partie informations personnelles
+            &--description {
+                width: 100%; // Pour que la largeur soit égale à celle de la partie 1
+            }
+            &--openToWork {
+                margin: 0 auto v.$font-xsmall;
+                &--text {
+                    padding-right: v.$font-small;
+                }
+            }
+        }
+        &--secondField {
+            //* Partie languages
+            //? Technos
+            &--text {
+                font-size: v.$font-small;
+            }
+            &--technos {
+                //? Liste des technos
+                grid-template-columns: repeat(3, 1fr); // 3 languages par lignes
+                padding: v.$font-xsmall v.$font-medium;
+                &--group,
+                &--group--selected {
+                    //? Bloc image + texte
+                    gap: v.$font-small;
+                    margin: v.$font-xsmall 0;
+                    font-size: v.$font-xsmall + 0.3;
+                    & img {
+                        width: v.$font-medium;
+                        height: v.$font-medium;
+                    }
+                    &--selected {
+                        padding: 0.3rem v.$font-xsmall;
+                        width: 80%;
+                        border: 2px solid rgb(91, 166, 91);
+                    }
+                }
+            }
+        }
+        &--thirdField {
+            padding: v.$font-xsmall 0;
+            &--container {
+                width: 50%;
+                &--users {
+                    margin: 0 auto;
+                    padding: v.$font-xxsmall 0;
+                    width: 80%;
+                    &--text {
+                        margin-right: v.$font-medium;
+                        width: 70%;
+                        font-size: v.$font-xsmall + 0.3;
+                    }
+                    &--img-bloc {
+                        width: 30%;
+                        &--img {
+                            margin-left: 2rem;
+                            width: 2.5rem;
+                            height: 2.5rem;
+                        }
+                    }
+                }
+            }
+        }
+        &--fourthField {
+            //* Partie boutons
+            margin: v.$font-medium 0 v.$font-large; // Pour espacer le bloc en hauteur
+            //? Bouton Valider
+            &--submit,
+            &--delete {
+                margin-top: v.$font-small;
+                padding: v.$font-xsmall v.$font-medium; // Pour agrandir la surface du bouton
+                width: 45rem;
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        width: 90%; // Largeur du container
+        max-width: 75rem; // Largeur du container
+        font-size: v.$font-small; // Taille de la police
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-xsmall;
+            font-size: v.$font-small;
+        }
+        // ? En-tête
+        &--header {
+            margin: v.$font-xxlarge 0 0;
+
+            flex-direction: column-reverse;
+            //* Bloc complet sans le message d'erreur
+            //? Titre
+            &--title {
+                margin: v.$font-small;
+                font-size: v.$font-medium;
+            }
+        }
+        //* Formulaire
+        &--firstField {
+            //* Partie informations personnelles
+            &--description {
+                width: 100%; // Pour que la largeur soit égale à celle de la partie 1
+            }
+            &--openToWork {
+                margin: 0 auto v.$font-xxsmall;
+                &--text {
+                    padding-right: v.$font-xsmall;
+                }
+            }
+        }
+        &--secondField {
+            //* Partie languages
+            //? Technos
+            &--text {
+                font-size: v.$font-xsmall;
+            }
+            &--technos {
+                //? Liste des technos
+                grid-template-columns: repeat(2, 1fr); // 2 languages par lignes
+                padding: v.$font-xsmall v.$font-medium;
+                &--group,
+                &--group--selected {
+                    //? Bloc image + texte
+                    gap: v.$font-small;
+                    margin: v.$font-xsmall v.$font-small;
+                    font-size: v.$font-xsmall + 0.1;
+                    & img {
+                        width: v.$font-medium;
+                        height: v.$font-medium;
+                    }
+                    &--selected {
+                        padding: 0.3rem v.$font-xsmall;
+                        width: 80%;
+                        border: 3px solid rgb(91, 166, 91);
+                    }
+                }
+            }
+        }
+        &--thirdField {
+            padding: v.$font-xsmall 0;
+            &--container {
+                width: 70%;
+                &--users {
+                    margin: 0 auto;
+                    padding: v.$font-xxsmall 0;
+                    width: 80%;
+                    &--text {
+                        margin-right: v.$font-medium;
+                        width: 60%;
+                        font-size: v.$font-xsmall + 0.1;
+                    }
+                    &--img-bloc {
+                        width: 40%;
+                        &--img {
+                            margin-left: 2rem;
+                            width: 2rem;
+                            height: 2rem;
+                        }
+                    }
+                }
+            }
+        }
+        &--fourthField {
+            //* Partie boutons
+            margin: v.$font-medium 0 v.$font-large; // Pour espacer le bloc en hauteur
+
+            //? Bouton Valider
+            &--submit,
+            &--delete {
+                margin-top: v.$font-small;
+                padding: v.$font-xsmall v.$font-medium; // Pour agrandir la surface du bouton
+                width: 35rem; // Largeur du container
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-small) {
+        width: 95%; // Largeur du container
+        max-width: 40rem; // Largeur du container
+        font-size: v.$font-xsmall; // Taille de la police
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-xsmall;
+            font-size: v.$font-xsmall;
+        }
+        // ? En-tête
+        &--header {
+            margin: v.$font-xlarge + 0.6 0 v.$font-small 0;
+            flex-direction: column-reverse;
+            //* Bloc complet sans le message d'erreur
+            //? Titre
+            &--title {
+                margin: v.$font-small;
+                font-size: v.$font-small;
+            }
+        }
+        //* Formulaire
+        &--firstField {
+            //* Partie informations personnelles
+            &--description {
+                //? 3eme partie
+                width: 100%; // Pour que la largeur soit égale à celle de la partie 1
+                &--reading {
+                    margin: v.$font-xsmall 0;
+                    padding: v.$font-xsmall;
+                }
+            }
+            &--openToWork {
+                //? 4eme partie
+                margin: 0 auto v.$font-xxsmall;
+                &--text {
+                    padding-right: v.$font-xxsmall;
+                }
+            }
+        }
+        &--secondField {
+            //* Partie languages
+            //? Technos
+            &--text {
+                font-size: v.$font-xxsmall;
+            }
+            &--technos {
+                //? Liste des technos
+                grid-template-columns: repeat(2, 1fr); // 2 languages par lignes
+                padding: v.$font-xsmall v.$font-small;
+                &--group,
+                &--group--selected {
+                    //? Bloc image + texte
+                    gap: v.$font-xsmall;
+                    margin: v.$font-xxsmall v.$font-small;
+                    font-size: v.$font-xxsmall + 0.2;
+                    & img {
+                        width: v.$font-small;
+                        height: v.$font-small;
+                    }
+                    &--selected {
+                        padding: 0.3rem v.$font-xxsmall;
+                        width: 80%;
+                        border: 2px solid rgb(91, 166, 91);
+                    }
+                }
+            }
+        }
+        &--thirdField {
+            padding: v.$font-xsmall 0;
+            &--container {
+                width: 100%;
+                &--users {
+                    margin: 0 auto;
+                    padding: v.$font-xxsmall 0;
+                    width: 70%;
+                    &--text {
+                        margin-right: v.$font-medium;
+                        width: 60%;
+                        font-size: v.$font-xxsmall + 0.2;
+                    }
+                    &--img-bloc {
+                        width: 40%;
+                        &--img {
+                            margin-left: 2rem;
+                            width: 1.7rem;
+                            height: 1.7rem;
+                        }
+                    }
+                }
+            }
+        }
+        &--fourthField {
+            //* Partie boutons
+            margin: v.$font-small 0 v.$font-medium; // Pour espacer le bloc en hauteur
+            //? Bouton Valider
+            &--submit,
+            &--delete {
+                margin-top: v.$font-xsmall;
+                padding: v.$font-xsmall v.$font-medium; // Pour agrandir la surface du bouton
+                width: 25rem; // Largeur du container
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+        width: 95%; // Largeur du container
+        font-size: v.$font-xsmall; // Taille de la police
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-xsmall;
+            font-size: v.$font-xsmall;
+        }
+        // ? En-tête
+        &--header {
+            margin: v.$font-xxlarge 0 v.$font-xsmall 0;
+            flex-direction: column-reverse;
+            //* Bloc complet sans le message d'erreur
+            //? Titre
+            &--title {
+                margin: v.$font-xsmall;
+                font-size: v.$font-small;
+            }
+        }
+        //* Formulaire
+        &--firstField {
+            //* Partie informations personnelles
+            &--description {
+                //? 3eme partie
+                width: 100%; // Pour que la largeur soit égale à celle de la partie 1
+            }
+            &--openToWork {
+                //? 4eme partie
+                margin: 0 auto v.$font-xxsmall;
+                &--text {
+                    padding-right: v.$font-xxsmall;
+                }
+            }
+        }
+        &--secondField {
+            //* Partie languages
+            //? Technos
+            &--text {
+                font-size: v.$font-xxsmall;
+            }
+            &--technos {
+                //? Liste des technos
+                grid-template-columns: repeat(2, 1fr); // 2 languages par lignes
+                padding: v.$font-xxsmall v.$font-xsmall;
+                &--group,
+                &--group--selected {
+                    //? Bloc image + texte
+                    gap: v.$font-xxsmall;
+                    margin: v.$font-xxsmall v.$font-xsmall;
+                    font-size: v.$font-xxsmall;
+                    & img {
+                        width: v.$font-small;
+                        height: v.$font-small;
+                    }
+                    &--selected {
+                        padding: 0.2rem v.$font-xxsmall;
+                        width: 75%;
+                        border: 1px solid rgb(91, 166, 91);
+                    }
+                }
+            }
+        }
+        &--thirdField {
+            padding: v.$font-xsmall 0;
+
+            &--container {
+                width: 100%;
+                &--users {
+                    margin: 0 auto;
+                    padding: v.$font-xxsmall 0;
+                    width: 70%;
+                    &--text {
+                        margin-right: v.$font-medium;
+                        width: 60%;
+                        font-size: v.$font-xxsmall;
+                    }
+                    &--img-bloc {
+                        width: 40%;
+                        &--img {
+                            margin-left: 2rem;
+                            width: 1.5rem;
+                            height: 1.5rem;
+                        }
+                    }
+                }
+            }
+        }
+        &--fourthField {
+            //* Partie boutons
+            margin: v.$font-small 0 v.$font-medium; // Pour espacer le bloc en hauteur
+            //? Bouton Valider
+            &--submit,
+            &--delete {
+                margin-top: v.$font-xsmall;
+                padding: v.$font-xsmall v.$font-medium; // Pour agrandir la surface du bouton
+                width: 100%; // Largeur du container
+            }
+        }
+    }
+}

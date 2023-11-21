@@ -1,0 +1,116 @@
+@use '../../../../styles/variables' as v;
+@use '../../../../styles/mixins' as m; // @include pour utiliser
+
+.FilterBar {
+    display: flex;
+    flex-direction: column; // titre et container filtres en colonne
+    background: v.$color-dark;
+    border-top: 1.5px dashed v.$color;
+    color: v.$color;
+    opacity: 0.8;
+    //? Titre principal
+    &--title {
+        text-align: center;
+        text-decoration: underline;
+        color: v.$color;
+    }
+    &--secondField {
+        &--search {
+            border-radius: v.$border-radius;
+            padding-left: v.$font-xsmall; // Écarte légèrement le placeholder
+        }
+    }
+
+    @media screen and (min-width: v.$mq-large) {
+        font-size: v.$font-medium;
+        &--container {
+            display: flex;
+            flex-direction: row; // Disposition en ligne des éléments
+            justify-content: space-between; // Écarte les éléments
+            align-items: center; // Centre les éléments verticalement
+            margin: 0 auto; // Centre le container
+            width: 105rem; // Limite la largeur du container
+        }
+        &--firstField {
+            padding: v.$font-xsmall 0;
+            &--text {
+                display: none; // Cache le texte `Choix des technos` car présent dans le placeholder
+            }
+        }
+        &--secondField {
+            &--search {
+                width: 33rem; // Impose une largeur au champ de recherche pour intégration
+                font-size: v.$font-small;
+                height: 4.3rem; // Hauteur du champ de recherche égale à celui du <Select />
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-large) {
+        font-size: v.$font-medium;
+        &--title {
+            font-size: v.$font-medium;
+        }
+        &--container {
+            margin: 0 auto; // Centre le container
+            padding: 0 v.$font-small;
+            width: 58rem; // Limite la largeur du container
+        }
+        &--firstField {
+            padding: v.$font-xsmall 0;
+            &--text {
+                display: none; // Cache le texte `Choix des technos` car présent dans le placeholder
+            }
+        }
+        &--secondField {
+            padding: v.$font-xsmall 0;
+            justify-content: left; // Aligne les éléments à gauche
+            &--search {
+                width: 100%; // Prend toute la largeur disponible
+                max-width: 55rem; // Dans la limite de 55rem
+                font-size: v.$font-small;
+                height: v.$font-xlarge;
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        font-size: v.$font-small;
+        padding: 0 v.$font-small;
+        &--container {
+            width: 100%; // Prend toute la largeur disponible
+            padding: 0; // Supprime le padding des tailles supérieures
+        }
+        &--firstField {
+            border-bottom: 1px dashed v.$color;
+            &--text {
+                display: block; // Affiche le texte `Choix des technos`
+                padding: 0 0 v.$font-xsmall 0;
+            }
+        }
+        &--secondField {
+            border-bottom: 1px dashed v.$color;
+            &--search {
+                max-width: 50rem; // Limite la largeur du champ de recherche
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-small) {
+        font-size: v.$font-xsmall;
+        &--secondField {
+            &--search {
+                font-size: v.$font-xsmall;
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+        font-size: v.$font-xxsmall;
+        &--title {
+            padding-top: v.$font-xsmall;
+            font-size: v.$font-small;
+        }
+        &--secondField {
+            &--search {
+                font-size: v.$font-xxsmall;
+            }
+        }
+    }
+}

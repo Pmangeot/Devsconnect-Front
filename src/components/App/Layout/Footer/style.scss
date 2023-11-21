@@ -1,0 +1,34 @@
+@use '../../../../styles/variables' as v;
+@use '../../../../styles/mixins' as m; // @include pour utiliser
+
+.Footer {
+    @include m.flex-center;
+    justify-content: space-between;
+    padding: 2rem;
+    border-top: 1px solid black;
+    font-weight: 700;
+    background: v.$color-dark;
+    color: v.$color;
+
+    @media screen and (max-width: v.$mq-medium) {
+        flex-direction: column;
+        font-size: v.$font-small;
+        &--copyright {
+            order: 3;
+        }
+        &--contact {
+            order: 2;
+        }
+        &--cgu {
+            order: 1;
+        }
+    }
+    // Jusqu'à 500px (mobile)
+    @media screen and (max-width: v.$mq-small) {
+        font-size: v.$font-xsmall;
+    }
+    // Jusqu'à 320px (mobile)
+    @media screen and (max-width: v.$mq-xsmall) {
+        font-size: v.$font-xxsmall;
+    }
+}

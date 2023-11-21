@@ -1,0 +1,570 @@
+@use './variables' as v;
+@use './mixins' as m; // @include pour utiliser
+
+.Modale {
+    //? Modale
+    @include m.modale; // mixin pour centrer le formulaire
+    color: v.$color;
+
+    //? Legende
+    &--legend {
+        margin: 0 auto;
+        padding-top: v.$font-small;
+        color: v.$color;
+        text-align: center;
+        text-decoration: underline;
+        font-weight: 700;
+        border-top: 3px dashed v.$color;
+        width: 70%;
+    }
+    //? Entête et formulaire
+    &--container {
+        position: relative; // Pour positionner le bouton close en absolute
+        height: fit-content;
+        background: rgba(v.$color-darkest, 0.9); // Effet de transparence
+        text-align: center;
+    }
+    //? Titre
+    & h2 {
+        color: v.$color;
+    }
+    //? Croix de fermeture
+    &--close {
+        @include m.close-modale; // mixin pour positionner la croix
+    }
+    //? Formulaire
+    &--form--container {
+        & fieldset {
+            border: none;
+        }
+        display: flex;
+        flex-direction: column;
+        &--inputs {
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            & fieldset {
+                border: none;
+            }
+        }
+        &--cancel,
+        &--confirm,
+        &--delete {
+            display: block;
+            border-radius: v.$border-radius;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        &--cancel {
+            background-color: v.$color;
+            color: v.$color-darkest;
+            border: 0.2rem solid v.$color-darkest;
+        }
+        &--confirm {
+            background-color: rgb(0, 128, 0);
+            color: v.$color;
+            border: 0.2rem solid v.$color;
+        }
+        &--delete {
+            background-color: rgb(125, 26, 26);
+            color: v.$color;
+            border: 0.2rem solid v.$color;
+        }
+    }
+    &--other {
+        display: flex;
+        justify-content: center;
+        margin: v.$font-small auto;
+        &--link {
+            margin-left: v.$font-small;
+            text-decoration: underline;
+            color: v.$color-button;
+            cursor: pointer;
+        }
+        &--subtitle {
+            margin: 0 auto;
+            width: fit-content;
+            border-top: 0.1rem solid v.$color;
+            border-bottom: 0.1rem solid v.$color;
+        }
+        &--cgu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            &--container {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+            & label {
+                cursor: pointer;
+            }
+            & a {
+                text-decoration: underline;
+                color: v.$color-button;
+                cursor: pointer;
+            }
+        }
+    }
+    @media screen and (min-width: v.$mq-large) {
+        //? Entête et formulaire
+        &--container {
+            padding: v.$font-xlarge;
+            width: 70rem; // Largeur max de la modale
+        }
+        //? Titre
+        & h1 {
+            margin: v.$font-large auto;
+            font-size: v.$font-xlarge;
+        }
+        & h2 {
+            margin: 0 auto;
+            font-size: v.$font-large;
+        }
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-small;
+            font-size: v.$font-medium;
+        }
+        //? Formulaire
+        &--form {
+            //? Sous-titres
+            &--subtitle {
+                font-size: v.$font-medium;
+            }
+            &--text {
+                font-size: v.$font-small;
+            }
+            //? Container
+            &--container {
+                margin-top: v.$font-small;
+                &--inputs {
+                    width: 90%;
+                    &--input {
+                        width: 90%;
+                    }
+                }
+                &--cancel,
+                &--confirm,
+                &--delete {
+                    margin: 0 auto;
+                    margin-top: v.$font-small; // Pour espacer les boutons verticalement
+                    padding: v.$font-small v.$font-medium;
+                    width: 55%;
+                }
+            }
+        }
+        &--footer {
+            font-size: v.$font-small;
+            &--subtitle {
+                font-size: v.$font-large;
+            }
+        }
+        &--other {
+            &--cgu {
+                font-size: v.$font-small;
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-large) {
+        //? Entête et formulaire
+        &--container {
+            padding: v.$font-xlarge;
+            width: 65rem; // Largeur max de la modale
+        }
+        //? Titre
+        & h1 {
+            margin: v.$font-large auto;
+            font-size: v.$font-xlarge;
+        }
+        & h2 {
+            margin: v.$font-large auto;
+            font-size: v.$font-large;
+        }
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-small;
+            font-size: v.$font-medium;
+        }
+        //? Formulaire
+        &--form {
+            //? Sous-titres
+            &--subtitle {
+                font-size: v.$font-medium;
+            }
+            &--text {
+                font-size: v.$font-small;
+            }
+            //? Container
+            &--container {
+                margin-top: v.$font-small;
+                &--inputs {
+                    width: 100%;
+                    &--input {
+                        width: 90%;
+                    }
+                }
+                &--cancel,
+                &--confirm,
+                &--delete {
+                    margin: 0 auto;
+                    margin-top: v.$font-small; // Pour espacer les boutons verticalement
+                    padding: v.$font-small v.$font-medium;
+                    width: 85%;
+                    font-size: v.$font-small;
+                }
+                &--confirm {
+                    margin-top: v.$font-large;
+                }
+            }
+        }
+        &--footer {
+            font-size: v.$font-small;
+            &--subtitle {
+                font-size: v.$font-large;
+            }
+        }
+        &--other {
+            &--cgu {
+                font-size: v.$font-small;
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        //? Entête et formulaire
+        &--container {
+            padding: v.$font-xlarge;
+            width: 50rem; // Largeur max de la modale
+        }
+        //? Titre
+        & h1 {
+            margin: v.$font-large auto;
+            font-size: v.$font-large;
+        }
+        & h2 {
+            margin: v.$font-large auto;
+            font-size: v.$font-medium;
+        }
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-xsmall;
+            font-size: v.$font-medium;
+        }
+        //? Formulaire
+        &--form {
+            //? Sous-titres
+            &--subtitle {
+                font-size: v.$font-small;
+            }
+            &--text {
+                font-size: v.$font-xsmall;
+            }
+            //? Container
+            &--container {
+                margin-top: v.$font-small;
+                &--inputs {
+                    width: 100%;
+                    &--input {
+                        width: 90%;
+                    }
+                }
+                &--cancel,
+                &--confirm,
+                &--delete {
+                    margin: 0 auto;
+                    margin-top: v.$font-small; // Pour espacer les boutons verticalement
+                    padding: v.$font-small v.$font-medium;
+                    width: 85%;
+                    font-size: v.$font-small;
+                }
+                &--confirm {
+                    margin-top: v.$font-large;
+                }
+            }
+        }
+        &--footer {
+            font-size: v.$font-small;
+            &--subtitle {
+                font-size: v.$font-medium;
+            }
+        }
+        &--other {
+            &--cgu {
+                font-size: v.$font-small;
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-small) {
+        //? Entête et formulaire
+        &--container {
+            padding: v.$font-medium;
+            width: 100%; // Largeur max de la modale
+        }
+        //? Titre
+        & h1 {
+            margin: v.$font-large auto;
+            font-size: v.$font-medium;
+        }
+        & h2 {
+            margin: v.$font-xlarge auto;
+            font-size: v.$font-small + 0.3;
+        }
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-xsmall;
+            font-size: v.$font-small;
+        }
+        //? Formulaire
+        &--form {
+            //? Sous-titres
+            &--subtitle {
+                font-size: v.$font-xsmall + 0.2;
+            }
+            &--text {
+                font-size: v.$font-xxsmall + 0.3;
+            }
+            //? Container
+            &--container {
+                margin-top: v.$font-small;
+                &--inputs {
+                    width: 100%;
+                    &--input {
+                        width: 90%;
+                    }
+                }
+                &--cancel,
+                &--confirm,
+                &--delete {
+                    margin: 0 auto;
+                    margin-top: v.$font-small; // Pour espacer les boutons verticalement
+                    padding: v.$font-small v.$font-small;
+                    width: 70%;
+                    font-size: v.$font-xsmall;
+                }
+                &--confirm {
+                    margin-top: v.$font-large;
+                }
+            }
+        }
+        &--footer {
+            font-size: v.$font-xsmall;
+            &--subtitle {
+                font-size: v.$font-medium;
+            }
+        }
+        &--other {
+            &--cgu {
+                font-size: v.$font-small;
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+        & p {
+            font-size: v.$font-xxsmall + 0.3rem;
+        }
+
+        //? Entête et formulaire
+        &--container {
+            padding: v.$font-small;
+            width: 100%; // Largeur max de la modale
+        }
+        //? Titre
+        & h1 {
+            margin: v.$font-large auto;
+            font-size: v.$font-medium;
+        }
+        & h2 {
+            margin: v.$font-xxlarge auto;
+            font-size: v.$font-small;
+        }
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-xsmall;
+            font-size: v.$font-small;
+        }
+        //? Formulaire
+        &--form {
+            //? Sous-titres
+            &--subtitle {
+                font-size: v.$font-xxsmall + 0.3rem;
+            }
+            &--text {
+                font-size: v.$font-xxsmall + 0.1rem;
+            }
+            //? Container
+            &--container {
+                margin-top: v.$font-small;
+                &--inputs {
+                    width: 100%;
+                    &--input {
+                        width: 90%;
+                    }
+                }
+                &--cancel,
+                &--confirm,
+                &--delete {
+                    margin: 0 auto;
+                    margin-top: v.$font-xsmall; // Pour espacer les boutons verticalement
+                    padding: v.$font-xsmall v.$font-small;
+                    width: 70%;
+                    font-size: v.$font-xsmall;
+                }
+                &--confirm {
+                    margin-top: v.$font-medium;
+                }
+            }
+        }
+        &--footer {
+            font-size: v.$font-xsmall;
+            &--subtitle {
+                font-size: v.$font-small;
+            }
+        }
+        &--other {
+            &--cgu {
+                font-size: v.$font-xsmall;
+            }
+        }
+    }
+}
+
+//! Certains style de la modale inscription méritent un traitement particulier
+//! La modale d'inscription prend plus que l'écran, on ne peut pas mettre align-items: center
+//! On ajoute la classe .Signin sur le JSX et on modifie le CSS
+//! On place après .Modale pour que le style Signin soit lu en dernier
+.BigForm {
+    align-items: flex-start;
+    &--login-box {
+        margin: v.$font-xsmall auto;
+        padding: v.$font-xsmall;
+        background: v.$color-light;
+        opacity: 0.8;
+        border-radius: v.$border-radius;
+        width: 60%;
+        color: v.$color-darkest;
+    }
+
+    &--container {
+        &--image {
+            position: relative; // Pour positionner le bouton upload
+            &--profil {
+                width: 100%;
+                height: auto;
+                border-radius: v.$border-radius;
+            }
+            &--upload {
+                cursor: pointer; // Sert de bouton pour modifier l'image
+                & svg {
+                    color: yellow;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: v.$mq-large) {
+        // ? En-tête
+        &--container {
+            &--image {
+                width: fit-content; // Aide au placement de l'icône d'upload
+                margin: v.$font-medium auto v.$font-small; // Centre le container
+                &--profil {
+                    width: 20rem;
+                    border: 4px solid v.$color-darkest;
+                }
+                &--upload {
+                    position: absolute;
+                    bottom: 8%;
+                    right: 15%;
+                    width: 17%;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-large) {
+        // ? En-tête
+        &--container {
+            &--image {
+                width: fit-content; // Aide au placement de l'icône d'upload
+                margin: v.$font-medium auto v.$font-small; // Centre le container
+                &--profil {
+                    width: 16rem;
+                    border: 3px solid v.$color-darkest;
+                }
+                &--upload {
+                    position: absolute;
+                    bottom: 8%;
+                    right: 15%;
+                    width: 17%;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        &--login-box {
+            width: 70%;
+            font-size: v.$font-xsmall;
+        }
+        &--container {
+            &--image {
+                width: fit-content; // Aide au placement de l'icône d'upload
+                margin: v.$font-small auto v.$font-xsmall; // Centre le container
+                &--profil {
+                    margin: 0;
+                    width: 15rem;
+                    border: 3px solid v.$color-darkest;
+                }
+                &--upload {
+                    position: absolute;
+                    bottom: 7%;
+                    right: 10%;
+                    width: 15%;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-small) {
+        // ? En-tête
+        &--container {
+            &--image {
+                width: fit-content; // Aide au placement de l'icône d'upload
+                margin: v.$font-xsmall auto v.$font-xxsmall; // Centre le container
+                &--profil {
+                    margin: 0;
+                    width: 11rem;
+                    border: 3px solid v.$color-darkest;
+                }
+                &--upload {
+                    position: absolute;
+                    bottom: 7%;
+                    right: 10%;
+                    width: 15%;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+        &--login-box {
+            width: 70%;
+            padding: v.$font-xsmall;
+            font-size: v.$font-xxsmall + 0.3;
+        }
+        // ? En-tête
+        &--container {
+            &--image {
+                width: fit-content; // Aide au placement de l'icône d'upload
+                margin: v.$font-xsmall auto v.$font-xxsmall; // Centre le container
+                &--profil {
+                    margin: 0 auto;
+                    width: 8rem;
+                    border: 3px solid v.$color-darkest;
+                }
+                &--upload {
+                    position: absolute;
+                    bottom: 7%;
+                    right: 10%;
+                    width: 15%;
+                }
+            }
+        }
+    }
+}

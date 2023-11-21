@@ -1,0 +1,404 @@
+@use '../../../../styles/variables' as v;
+@use '../../../../styles/mixins' as m; // @include pour utiliser
+
+//? Carte d'un membre
+.CardMember {
+    // Taille de la carte
+    height: 55rem;
+    border: 2px solid v.$color-darkest; // Permet de mettre une bordure à la carte
+    border-radius: v.$border-radius; // Permet d'arrondir les bords de la carte
+    box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.44);
+    &:hover {
+        scale: 1.01;
+        transition: 0.5s;
+    }
+    //? Sous titres
+    & h4 {
+        color: v.$color-darkest;
+        text-decoration: underline;
+    }
+    &--header {
+        display: flex; // Permet de mettre les éléments en ligne
+        flex-direction: column;
+        &--link {
+            display: flex; // Permet de mettre les éléments en ligne
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: v.$color-dark;
+            border-radius: 1.1rem 1.1rem 0 0;
+            &--text {
+                //? Nom/Prénom du membre
+                &--title {
+                    white-space: nowrap; //* Empêche le retour à la ligne
+                    overflow: hidden; //* Cache le contenu dépassant du cadre
+                    text-overflow: ellipsis; //* Ajoute des points de suspension
+                    color: v.$color;
+                }
+                &--availability {
+                    font-weight: 700;
+                }
+            }
+            //? Image du membre
+            &--img {
+                aspect-ratio: auto;
+                border-radius: v.$border-radius;
+            }
+        }
+        &--technos--title {
+            font-weight: 700;
+        }
+        &--technos--list {
+            display: grid; // Permet de mettre les cartes en grille
+            justify-items: center;
+            grid-template-columns: repeat(8, 1fr);
+        }
+    }
+    &--body {
+        //? Description du membre
+        &--description {
+            background-color: v.$color-input;
+            border-radius: v.$border-radius;
+            overflow: hidden; // Permet de gérer le scroll si le texte dépasse
+            text-align: justify; // Permet de justifier le texte
+        }
+    }
+    &--footer {
+        //? Description des projets
+        &--list {
+            //? Liste des projets
+            &--item {
+                white-space: nowrap; //* Empêche le retour à la ligne
+                overflow: hidden; //* Cache le contenu dépassant du cadre
+                text-overflow: ellipsis; //* Ajoute des points de suspension
+                color: v.$color-button;
+                width: fit-content;
+                cursor: pointer;
+                list-style: none;
+                &:hover {
+                    cursor: pointer;
+                    background-color: v.$color;
+                    opacity: 0.8;
+                    border-radius: v.$border-radius;
+                }
+            }
+            //? Pas de projet
+            &--noitem {
+                font-style: italic;
+                list-style: none;
+                text-align: center;
+                color: red;
+                border-radius: v.$border-radius;
+                font-weight: 700;
+            }
+        }
+    }
+    @media screen and (min-width: v.$mq-large) {
+        //* Large
+        width: 33rem;
+        //? Sous titres
+        & h4 {
+            font-size: v.$font-small;
+        }
+        &--header {
+            &--link {
+                height: 12rem;
+                padding: v.$font-xsmall;
+                &--text {
+                    width: 74%;
+                    //? Nom/Prénom du membre
+                    &--title {
+                        font-size: v.$font-medium;
+                        margin-bottom: v.$font-small;
+                    }
+                }
+                //? Image du membre
+                &--img {
+                    width: v.$font-xlarge + 3rem;
+                    max-height: 10rem;
+                }
+            }
+            &--technos--title {
+                padding: v.$font-xsmall v.$font-small 0;
+            }
+            //? Liste des technos
+            &--technos--list {
+                gap: v.$font-xsmall; // Permet de gérer un espace entre les cartes
+                margin-top: v.$font-xsmall;
+                padding: 0 v.$font-small;
+                height: 11rem;
+                &--img {
+                    width: v.$font-large;
+                    height: v.$font-large;
+                }
+            }
+        }
+        &--body {
+            padding: 0 v.$font-small;
+            margin: v.$font-xsmall 0 v.$font-xxsmall;
+            //? Description du membre
+            &--description {
+                margin-top: v.$font-xxsmall;
+                padding: v.$font-xxsmall v.$font-small;
+                height: 12rem;
+                font-size: v.$font-small;
+            }
+        }
+        &--footer {
+            padding: 0 v.$font-small;
+            //? Description des projets
+            &--list {
+                margin-top: v.$font-xsmall;
+                //? Liste des projets
+                &--item {
+                    margin: 0 auto;
+                    &:hover {
+                        padding: 0 v.$font-xsmall;
+                    }
+                }
+                //? Aucun projet
+                &--noitem {
+                    height: 6.5rem;
+                    line-height: 6.5rem;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 1080px) {
+        width: 46rem;
+    }
+    @media screen and (max-width: 1000px) {
+        width: 45rem;
+    }
+    @media screen and (max-width: 950px) {
+        width: 42rem;
+    }
+    @media screen and (max-width: 900px) {
+        width: 40rem;
+    }
+    @media screen and (max-width: 850px) {
+        width: 38rem;
+    }
+    @media screen and (max-width: 800px) {
+        width: 36rem;
+    }
+    @media screen and (max-width: v.$mq-large) {
+        //* Large
+        //? Sous titres
+        & h4 {
+            font-size: v.$font-small;
+        }
+        &--header {
+            &--link {
+                height: 12rem;
+                padding: v.$font-xsmall;
+                &--text {
+                    width: 74%;
+                    //? Nom/Prénom du membre
+                    &--title {
+                        font-size: v.$font-medium;
+                        margin-bottom: v.$font-small;
+                    }
+                }
+                //? Image du membre
+                &--img {
+                    width: v.$font-xlarge + 3rem;
+                    max-height: 10rem;
+                }
+            }
+            &--technos--title {
+                padding: v.$font-xsmall v.$font-small 0;
+            }
+            //? Liste des technos
+            &--technos--list {
+                gap: v.$font-xsmall; // Permet de gérer un espace entre les cartes
+                margin-top: v.$font-xsmall;
+                padding: 0 v.$font-small;
+                height: 11rem;
+                &--img {
+                    width: v.$font-large;
+                    height: v.$font-large;
+                }
+            }
+        }
+        &--body {
+            padding: 0 v.$font-small;
+            margin: v.$font-xsmall 0 v.$font-xxsmall;
+            //? Description du membre
+            &--description {
+                margin-top: v.$font-xxsmall;
+                padding: v.$font-xxsmall v.$font-small;
+                height: 12rem;
+                font-size: v.$font-small;
+            }
+        }
+        &--footer {
+            padding: 0 v.$font-small;
+            //? Description des projets
+            &--list {
+                margin-top: v.$font-xsmall;
+                //? Liste des projets
+                &--item {
+                    margin: 0 auto;
+                    &:hover {
+                        padding: 0 v.$font-xsmall;
+                    }
+                }
+                //? Aucun projet
+                &--noitem {
+                    height: 6.5rem;
+                    line-height: 6.5rem;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 768px) {
+        width: 67rem;
+    }
+    @media screen and (max-width: 700px) {
+        width: 63rem;
+    }
+    @media screen and (max-width: 650px) {
+        width: 58rem;
+    }
+    @media screen and (max-width: 600px) {
+        width: 53rem;
+    }
+    @media screen and (max-width: 550px) {
+        width: 48rem;
+    }
+    @media screen and (max-width: 500px) {
+        width: 43rem;
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        //* Medium
+        height: 35rem;
+        & h4 {
+            font-size: v.$font-xsmall;
+        }
+        &--header {
+            &--link {
+                height: 8rem;
+                &--text {
+                    width: 80%;
+                    &--title {
+                        margin-bottom: v.$font-xxsmall;
+                        font-size: v.$font-small + 0.3rem;
+                    }
+                    &--availability {
+                        font-size: v.$font-xsmall + 0.3rem;
+                    }
+                }
+                &--img {
+                    width: v.$font-xlarge + 3rem;
+                    max-height: 7rem;
+                }
+            }
+            &--technos--list {
+                grid-template-columns: repeat(11, 1fr);
+                margin-top: v.$font-xxsmall;
+                height: 6rem;
+                &--img {
+                    width: v.$font-medium;
+                    height: v.$font-medium;
+                }
+            }
+        }
+        &--body {
+            margin: v.$font-xxsmall 0;
+            &--description {
+                margin-top: v.$font-xxsmall;
+                height: 6rem;
+                font-size: v.$font-xxsmall + 0.3rem;
+            }
+        }
+        &--footer {
+            //? Liste des projets
+            &--list {
+                &--item {
+                    font-size: v.$font-xsmall;
+                }
+                &--noitem {
+                    height: 4.5rem;
+                    line-height: 4.5rem;
+                    font-size: v.$font-xsmall;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 450px) {
+        width: 38rem;
+    }
+    @media screen and (max-width: 400px) {
+        width: 33rem;
+    }
+    @media screen and (max-width: 350px) {
+        width: 30rem;
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+        //* Xsmall
+        width: 26rem;
+        height: 31rem;
+        & h4 {
+            font-size: v.$font-xsmall;
+        }
+        &--header {
+            &--link {
+                height: 8rem;
+                &--text {
+                    width: 60%;
+                    &--title {
+                        margin-bottom: v.$font-small;
+                        font-size: v.$font-small + 0.1rem;
+                    }
+                    &--availability {
+                        font-size: v.$font-xsmall;
+                    }
+                }
+                &--img {
+                    width: v.$font-xlarge;
+                    max-height: 6rem;
+                }
+            }
+            &--technos--list {
+                grid-template-columns: repeat(11, 1fr);
+                margin-top: v.$font-xxsmall;
+                height: 5rem;
+                &--img {
+                    width: v.$font-small;
+                    height: v.$font-small;
+                }
+            }
+        }
+        &--body {
+            margin: v.$font-xxsmall 0;
+            &--description {
+                margin-top: v.$font-xxsmall;
+                height: 6rem;
+                font-size: v.$font-xxsmall;
+            }
+        }
+        &--footer {
+            //? Liste des projets
+            &--list {
+                margin-top: 0.2rem;
+                &--item {
+                    font-size: v.$font-xxsmall;
+                }
+                &--noitem {
+                    height: 3rem;
+                    line-height: 3rem;
+                    font-size: v.$font-xxsmall;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 280px) {
+        width: 23rem;
+    }
+    @media screen and (max-width: 250px) {
+        width: 17rem;
+    }
+    @media screen and (max-width: 200px) {
+        max-width: 13rem;
+    }
+}

@@ -1,0 +1,226 @@
+@use '../../../../../../styles/variables' as v;
+@use '../../../../../../styles/mixins' as m; // @include pour utiliser
+
+//? Container burger
+.burger {
+    @include m.flex-center; // mixin pour flex
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 10; // pour être au dessus de tout, tout le temps
+}
+
+//? bouton burger
+.btn {
+    position: relative; // pour que les lignes soient positionnées par rapport à lui
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; // transition pour les lignes
+}
+
+//? quand burger actif
+.btn.active {
+    transform: rotate(45deg); // fais passer le plus en croix
+}
+
+//? pseudo élément
+.btn::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.5rem solid transparent; // contour invisible si non actif
+    border-radius: 50%; // pour faire un cercle
+    content: ''; // pour que le pseudo élément soit visible
+    transition: all 0.3s ease-in-out; // transition pour le pseudo élément
+}
+
+//? pseudo élément quand burger actif
+.btn.active::before {
+    transition-delay: 0.3s; // délai pour que le pseudo élément apparaisse après la transition des lignes
+}
+
+//? lignes
+.lines {
+    position: absolute;
+    width: 100%;
+    background: v.$color;
+    border-radius: 0.5rem;
+    transition: all 0.5s ease-in-out;
+}
+
+//? ligne du haut
+.lines:nth-child(1) {
+    top: 0; // pour que la première ligne soit en haut
+}
+
+//? ligne du milieu quand burger actif
+.btn.active .lines:nth-child(2) {
+    opacity: 0; // pour la faire disparaitre
+    transition: all 0.1s ease-in; // transition pour la deuxième ligne
+}
+
+//? Média queries
+.burger {
+    @media screen and (max-width: v.$mq-medium) {
+        //? Container burger
+        .burger {
+            width: 4rem;
+            height: 4rem;
+        }
+
+        //? bouton burger
+        .btn {
+            width: 4rem;
+            height: 4rem;
+        }
+
+        //? pseudo élément
+        .btn::before {
+            width: 4.5rem;
+            height: 4.5rem;
+        }
+
+        //? pseudo élément quand burger actif
+        .btn.active::before {
+            border: 0.4rem solid v.$color;
+        }
+
+        //? lignes
+        .lines {
+            height: 0.5rem;
+        }
+
+        //? ligne du milieu
+        .lines:nth-child(2) {
+            top: 1.7rem;
+        }
+
+        //? ligne du bas
+        .lines:nth-child(3) {
+            top: 3.4rem;
+        }
+
+        //? lignes quand burger actif
+        .btn.active .lines {
+            width: 3rem;
+        }
+
+        //? ligne du haut quand burger actif
+        .btn.active .lines:nth-child(1) {
+            transform: translate(0.45rem, 1.75rem);
+        }
+
+        //? ligne du bas quand burger actif
+        .btn.active .lines:nth-child(3) {
+            transform: translate(0.5rem, -1.7rem) rotate(90deg);
+        }
+    }
+    @media screen and (max-width: v.$mq-small) {
+        //? Container burger
+        .burger {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        //? bouton burger
+        .btn {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        //? pseudo élément
+        .btn::before {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+
+        //? pseudo élément quand burger actif
+        .btn.active::before {
+            border: 0.3rem solid v.$color;
+        }
+
+        //? lignes
+        .lines {
+            height: 0.4rem;
+        }
+
+        //? ligne du milieu
+        .lines:nth-child(2) {
+            top: 1.3rem;
+        }
+
+        //? ligne du bas
+        .lines:nth-child(3) {
+            top: 2.6rem;
+        }
+
+        //? lignes quand burger actif
+        .btn.active .lines {
+            width: 2.5rem;
+        }
+
+        //? ligne du haut quand burger actif
+        .btn.active .lines:nth-child(1) {
+            transform: translate(0.24rem, 1.3rem);
+        }
+
+        //? ligne du bas quand burger actif
+        .btn.active .lines:nth-child(3) {
+            transform: translate(0.21rem, -1.29rem) rotate(90deg);
+        }
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+        //? Container burger
+        .burger {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        //? bouton burger
+        .btn {
+            height: 2rem;
+            width: 2rem;
+        }
+
+        //? pseudo élément
+        .btn::before {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        //? pseudo élément quand burger actif
+        .btn.active::before {
+            border: 0.1rem solid v.$color;
+        }
+
+        //? lignes
+        .lines {
+            height: 0.2rem;
+        }
+
+        //? ligne du milieu
+        .lines:nth-child(2) {
+            top: 0.8rem;
+        }
+
+        //? ligne du bas
+        .lines:nth-child(3) {
+            top: 1.6rem;
+        }
+
+        //? lignes quand burger actif
+        .btn.active .lines {
+            width: 2rem;
+        }
+
+        //? ligne du haut quand burger actif
+        .btn.active .lines:nth-child(1) {
+            transform: translate(-0rem, 0.95rem);
+        }
+
+        //? ligne du bas quand burger actif
+        .btn.active .lines:nth-child(3) {
+            transform: translate(-0rem, -0.7rem) rotate(90deg);
+        }
+    }
+}

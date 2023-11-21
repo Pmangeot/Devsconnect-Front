@@ -1,0 +1,140 @@
+@use '../../../../styles/variables' as v;
+@use '../../../../styles/mixins' as m; // @include pour utiliser
+
+//? Carte d'un membre
+.CardMemberMini {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: v.$border-radius; // Permet d'arrondir les bords de la carte
+    box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.44);
+    background: v.$color-darkest; // Permet de mettre une couleur de fond à la carte
+    &:hover {
+        background: v.$color;
+        & h3 {
+            color: v.$color-darkest;
+        }
+    }
+    &--header {
+        &--link {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            &--text {
+                //? Nom/Prénom du membre
+                &--title {
+                    white-space: nowrap; //* Empêche le retour à la ligne
+                    overflow: hidden; //* Cache le contenu dépassant du cadre
+                    text-overflow: ellipsis; //* Ajoute des points de suspension
+                    color: v.$color;
+                    font-size: v.$font-xsmall;
+                }
+            }
+            //? Image du membre
+            &--container {
+                &--img {
+                    margin: 0 auto;
+                    aspect-ratio: auto;
+                    width: fit-content;
+                    border-radius: v.$border-radius;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: v.$mq-large) {
+        padding: 0.5rem 0;
+        &--header {
+            &--link {
+                &--text {
+                    width: 75%;
+                    //? Nom/Prénom du membre
+                    &--title {
+                        margin: auto v.$font-xsmall;
+                        width: 80%;
+                        font-size: v.$font-xsmall;
+                    }
+                }
+                //? Image du membre
+                &--container {
+                    width: 25%;
+                    &--img {
+                        height: v.$font-xlarge;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-large) {
+        padding: 0.5rem 0;
+        &--header {
+            &--link {
+                &--text {
+                    width: 75%;
+                    //? Nom/Prénom du membre
+                    &--title {
+                        margin: auto v.$font-xsmall;
+                        width: 80%;
+                        font-size: v.$font-xsmall;
+                    }
+                }
+                //? Image du membre
+                &--container {
+                    width: 25%;
+                    &--img {
+                        height: v.$font-xlarge;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        padding: 0.5rem 0;
+        &--header {
+            &--link {
+                &--text {
+                    width: 75%;
+                    //? Nom/Prénom du membre
+                    &--title {
+                        margin: auto v.$font-xsmall;
+                        width: 80%;
+                        font-size: v.$font-xsmall - 0.2;
+                    }
+                }
+                //? Image du membre
+                &--container {
+                    width: 25%;
+                    &--img {
+                        height: v.$font-medium;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-small) {
+        padding: 0.5rem 0;
+        &--header {
+            &--link {
+                &--text {
+                    width: 75%;
+                    //? Nom/Prénom du membre
+                    &--title {
+                        margin: auto v.$font-xsmall;
+                        width: 80%;
+                        font-size: v.$font-xxsmall;
+                    }
+                }
+                //? Image du membre
+                &--container {
+                    width: 25%;
+                    &--img {
+                        height: v.$font-small;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+    }
+}

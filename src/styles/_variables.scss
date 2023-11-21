@@ -1,0 +1,54 @@
+@use 'sass:color';
+
+//? Colors
+$color: #d5d5d5;
+// $color: #e177d7;
+$color-dark: color.scale($color, $lightness: -75%);
+$color-light: color.scale($color, $lightness: 40%);
+
+$color-button: #6558f7;
+// $color-button: #8f2491;
+
+$color-darkest: #333333;
+
+// Bouton retour
+$color-return: #7c7b79;
+
+// Links
+$color-link-active: #6558f7;
+
+// Inputs
+$color-input: rgba(164, 164, 164, 0.5);
+
+//? Fonts
+$font: 'Roboto', sans-serif;
+$font-weight: 300;
+
+$font-title: 'Oswald', sans-serif;
+$font-title-weight: 500;
+$font-sans: 'Open Sans', sans-serif;
+
+$gutter: 1rem;
+
+//? Sizes
+$font-xxlarge: 5rem;
+$font-xlarge: 4rem;
+$font-large: 3rem;
+$font-medium: 2rem;
+$font-small: 1.5rem;
+$font-xsmall: 1rem;
+$font-xxsmall: 0.6rem;
+
+//? Media Queries
+$mq-xlarge: 1500px;
+$mq-large: 1080px;
+$mq-medium: 768px;
+$mq-small: 500px;
+$mq-xsmall: 324px;
+
+$height-header-medium: 7rem;
+$height-header-small: 6rem;
+$height-header-xsmall: 5rem;
+
+//? border-radius
+$border-radius: 1.3rem;

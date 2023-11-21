@@ -1,0 +1,13 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/variables' as m; // @include pour utiliser
+
+.Cgu {
+    flex-grow: 1; // Permet de descendre le footer en bas de page
+    padding: 3rem;
+    text-align: justify;
+    & h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+}

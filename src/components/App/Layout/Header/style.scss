@@ -1,0 +1,206 @@
+@use '../../../../styles/variables' as v;
+@use '../../../../styles/mixins' as m; // @include pour utiliser
+
+//! Header Global
+//? Background et color
+.Header {
+    background: v.$color-dark; // Couleur de fond pour small et large
+    color: v.$color; // Couleur du titre pour small et large
+}
+//? Liens
+.Header--ul--link {
+    //? Style du navLink
+    & a.active::after {
+        content: '';
+        display: block;
+        margin: 0 auto;
+        width: 90%;
+        height: 2px;
+        border-radius: v.$border-radius;
+        background: v.$color-link-active;
+    }
+}
+//? Boutons login et subscribe
+.Header--connect {
+    & button {
+        border: none;
+        border-radius: v.$border-radius;
+        font-weight: 500;
+        cursor: pointer;
+    }
+    &--subscribe,
+    &--logout {
+        background: v.$color;
+        color: v.$color-darkest;
+    }
+    &--login,
+    &--profil {
+        background: v.$color-button;
+        color: v.$color;
+    }
+}
+
+//! Header Desktop
+.Header {
+    // A partir de 768px (desktop)
+    @media screen and (min-width: #{v.$mq-medium + 1px}) {
+        // + 1px pour éviter les bugs, le tout entouré de #{} pour garder la variable de media queries
+        @include m.flex-center;
+        justify-content: space-between;
+        padding: v.$font-xsmall v.$font-small;
+        font-size: v.$font-small;
+        //? Liste des liens
+        & ul {
+            display: flex;
+
+            //? Lien unique
+            & .Header--ul--link {
+                padding-left: 1rem;
+            }
+        }
+        //? Boutons login et subscribe
+        &--connect {
+            & button {
+                padding: 0.5rem 1.2rem;
+            }
+            &--subscribe,
+            &--logout {
+                margin-left: 2rem;
+            }
+        }
+    }
+    // A partir de 1024px (desktop)
+    @media screen and (min-width: v.$mq-large) {
+        font-size: v.$font-medium;
+        //? Lien unique
+        & ul {
+            //? Lien unique
+            & .Header--ul--link {
+                padding-left: 4rem;
+            }
+        }
+    }
+}
+
+//! Header Mobile
+//? Gestion de la cohérence du centrage du titre par rapport au header en mobile
+//? Gestion cohérence de la margin-top du main
+.Header {
+    // Jusqu'à 768px (mobile)
+    @media screen and (max-width: v.$mq-medium) {
+        // hauteur du header
+        height: v.$height-header-medium; // Hauteur du header en variable
+
+        &--brand {
+            & h1 {
+                font-size: v.$font-xlarge;
+            }
+            @include m.flex-center;
+            height: v.$height-header-medium; // Hauteur du titre égale à la hauteur du header pour le centrage
+        }
+        // Espace égale à la hauteur du header
+        top: v.$height-header-medium;
+    }
+    // Jusqu'à 500px (mobile)
+    @media screen and (max-width: v.$mq-small) {
+        height: v.$height-header-small; // Hauteur du header en variable
+
+        &--brand {
+            & h1 {
+                font-size: v.$font-large;
+            }
+            @include m.flex-center;
+            height: v.$height-header-small; // Hauteur du titre égale à la hauteur du header pour le centrage
+        }
+
+        // Espace égale à la hauteur du header
+        top: v.$height-header-small;
+    }
+    // Jusqu'à 320px (mobile)
+    @media screen and (max-width: v.$mq-xsmall) {
+        height: v.$height-header-xsmall; // Hauteur du header
+        &--brand {
+            & h1 {
+                font-size: v.$font-medium; // Taille du titre
+            }
+            @include m.flex-center;
+            height: v.$height-header-xsmall; // Hauteur du titre égale à la hauteur du header pour le centrage
+        }
+        // Espace égale à la hauteur du header
+        top: v.$height-header-xsmall;
+    }
+}
+
+//? Global
+.LeftMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: left;
+    padding: 10% 15%;
+    background: v.$color-dark;
+    color: v.$color;
+
+    //? Gestion de la position/transition
+    position: fixed; // Pour rester en place
+    left: -100vw; // Pour être en dehors de l'écran
+    width: 100vw; // Pour prendre toute la largeur de l'écran
+    height: 100%; // Pour prendre toute la hauteur de l'écran
+    transform: translateX(-100%); // Animation pour l'ouverture
+    transition: transform 0.7s ease-in-out; // Animation pour l'ouverture
+    z-index: 5; // Pour être au dessus du main
+
+    &.active {
+        left: 0; // Left à 0 pour être visible quand on ouvre le menu
+        transform: translateX(0); // Animation pour l'ouverture
+    }
+    & .Header--connect {
+        display: flex;
+    }
+
+    //? Média queries
+    // Jusqu'à 768px (mobile)
+    @media screen and (max-width: v.$mq-medium) {
+        //? Lien unique
+        & ul > .Header--ul--link {
+            margin: 2rem 0;
+            font-size: v.$font-medium;
+            width: fit-content;
+        }
+
+        //? Boutons login et subscribe
+        & button {
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            font-size: v.$font-medium;
+        }
+    }
+    // Jusqu'à 500px (mobile)
+    @media screen and (max-width: v.$mq-small) {
+        //? Lien unique
+        & ul > .Header--ul--link {
+            margin: 1.5rem 0;
+            font-size: v.$font-small;
+        }
+
+        //? Boutons login et subscribe
+        & button {
+            margin: 1.5rem auto;
+            font-size: v.$font-small;
+        }
+    }
+    // Jusqu'à 300px (mobile)
+    @media screen and (max-width: v.$mq-xsmall) {
+        //? Lien unique
+        & ul > .Header--ul--link {
+            margin: 2rem 0;
+            font-size: v.$font-xsmall;
+        }
+
+        //? Boutons login et subscribe
+        & button {
+            margin: 2rem auto;
+            font-size: v.$font-xsmall;
+        }
+    }
+}

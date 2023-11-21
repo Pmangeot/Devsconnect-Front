@@ -1,0 +1,526 @@
+@use '../../../../styles/variables' as v;
+@use '../../../../styles/mixins' as m; // @include pour utiliser
+
+.Project {
+    flex-grow: 1;
+    position: relative; // Pour positionner le bouton retour
+    margin: 0 auto; // Pour centrer le container
+    padding: v.$font-xsmall;
+    //? Bouton retour
+    &--return {
+        position: absolute;
+        top: 2%;
+        right: 5%;
+        & button {
+            padding: v.$font-xxsmall v.$font-large;
+            background: v.$color;
+            color: v.$color-darkest;
+            border-radius: v.$border-radius;
+            font-weight: 700;
+            cursor: pointer;
+            &:hover {
+                background: v.$color-darkest;
+                color: v.$color;
+            }
+        }
+    }
+    // ? Sous titre
+    &--title {
+        font-weight: 700;
+        text-decoration: underline;
+    }
+    // ? En-tête
+    &--header {
+        //? Titre
+        &--title {
+            background: v.$color-button;
+            border-radius: v.$border-radius;
+            color: v.$color;
+            text-align: center;
+            font-weight: 700;
+        }
+        //? Propriétaire
+        &--owner {
+            color: v.$color-button;
+            font-weight: 700;
+            font-size: v.$font-medium;
+            &:hover {
+                width: fit-content;
+                border-bottom: 1px solid #2f4f4f;
+                cursor: pointer;
+            }
+        }
+    }
+    &--firstField {
+        &--description {
+            background-color: v.$color-input;
+            border-radius: v.$border-radius;
+            color: v.$color-darkest;
+        }
+        &--openToWork {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            text-align: center;
+        }
+    }
+    &--secondField {
+        //? Technos
+        display: grid;
+        justify-items: left;
+        background-color: v.$color-input;
+        border-radius: v.$border-radius;
+        &--technos {
+            //? Liste des technos
+            color: v.$color-darkest;
+            &--group {
+                //? Bloc image + texte
+                display: flex;
+                align-items: center;
+                & p {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+    &--thirdField {
+        // ? Participants
+        display: grid;
+    }
+    &--fourthField {
+        // ? Boutons
+        display: flex;
+        justify-content: center;
+        margin: 3rem auto;
+        //? Bloc entier
+        &--container {
+            //? Style de tous les boutons
+            &--submit,
+            &--delete,
+            &--edit {
+                border-radius: v.$border-radius;
+                color: white;
+                font-weight: 700;
+                cursor: pointer;
+            }
+            //? Bouton retrait
+            &--delete {
+                background: rgb(125, 26, 26);
+                border: 0.2rem solid rgb(125, 26, 26);
+            }
+            //? Bouton postuler
+            &--submit {
+                background: green;
+                border: 0.2rem solid green;
+            }
+            //? Bouton editer
+            &--edit {
+                background: rgb(240, 168, 35);
+                border: 0.2rem solid rgb(240, 168, 35);
+            }
+        }
+    }
+
+    @media screen and (min-width: v.$mq-large) {
+        width: 70%;
+        max-width: 110rem;
+        // ? Sous titre
+        &--title {
+            padding: 0 v.$font-xsmall;
+            font-size: v.$font-medium;
+        }
+        // ? En-tête
+        &--header {
+            margin-top: 7rem; // Pour décaler le header du bouton retour
+            //? Titre
+            &--title {
+                margin: v.$font-xsmall;
+                padding: v.$font-medium;
+                font-size: v.$font-large;
+            }
+            //? Propriétaire
+            &--owner {
+                margin-left: v.$font-large;
+                font-size: v.$font-medium;
+            }
+        }
+        &--firstField {
+            &--description {
+                margin: v.$font-small v.$font-large;
+                padding: v.$font-xsmall;
+            }
+            &--openToWork {
+                margin: v.$font-xxsmall 0;
+            }
+        }
+        &--secondField {
+            //? Technos
+            grid-template-columns: repeat(4, 25%);
+            gap: 0.5rem;
+            margin: v.$font-small v.$font-large;
+            padding: v.$font-xsmall;
+            &--technos {
+                //? Liste des technos
+                &--group {
+                    //? Bloc image + texte
+                    & p {
+                        margin-left: 0.8rem;
+                    }
+                    & img {
+                        width: v.$font-medium;
+                        height: v.$font-medium;
+                    }
+                }
+            }
+        }
+        &--thirdField {
+            // ? Participants
+            grid-template-columns: repeat(5, 20%);
+            gap: v.$font-xsmall;
+            margin: v.$font-small v.$font-large;
+        }
+        &--fourthField {
+            // ? Boutons
+            display: flex;
+            justify-content: center;
+            margin: 3rem auto;
+            //? Bloc entier
+            &--container {
+                //? Style de tous les boutons
+                &--submit,
+                &--delete,
+                &--edit {
+                    padding: v.$font-small v.$font-large;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-large) {
+        width: 78%;
+        max-width: 80rem;
+        // ? Sous titre
+        &--title {
+            padding: 0 v.$font-xsmall;
+            font-size: v.$font-medium;
+        }
+        // ? En-tête
+        &--header {
+            margin-top: 7rem; // Pour décaler le header du bouton retour
+            //? Titre
+            &--title {
+                margin: v.$font-xsmall;
+                padding: v.$font-medium;
+                font-size: v.$font-large;
+            }
+            //? Propriétaire
+            &--owner {
+                margin-left: v.$font-large;
+                font-size: v.$font-medium;
+            }
+        }
+        &--firstField {
+            &--description {
+                margin: v.$font-small v.$font-large;
+                padding: v.$font-xsmall;
+            }
+            &--openToWork {
+                margin: v.$font-xxsmall 0;
+            }
+        }
+        &--secondField {
+            //? Technos
+            grid-template-columns: repeat(4, 25%);
+            gap: 0.5rem;
+            margin: v.$font-small v.$font-large;
+            padding: v.$font-xsmall v.$font-small;
+            &--technos {
+                //? Liste des technos
+                &--group {
+                    //? Bloc image + texte
+                    & p {
+                        margin-left: 0.8rem;
+                    }
+                    & img {
+                        width: v.$font-medium;
+                        height: v.$font-medium;
+                    }
+                }
+            }
+        }
+        &--thirdField {
+            // ? Participants
+            grid-template-columns: repeat(5, 20%);
+            gap: v.$font-xsmall;
+            margin: v.$font-small v.$font-large;
+        }
+        &--fourthField {
+            // ? Boutons
+            display: flex;
+            justify-content: center;
+            margin: 3rem auto;
+            //? Bloc entier
+            &--container {
+                //? Style de tous les boutons
+                &--submit,
+                &--delete,
+                &--edit {
+                    padding: v.$font-small v.$font-large;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        width: 90%;
+        max-width: 60rem;
+        // ? Sous titre
+        &--title {
+            padding: 0 v.$font-xsmall;
+            font-size: v.$font-small;
+        }
+        // ? En-tête
+        &--header {
+            margin-top: 6rem; // Pour décaler le header du bouton retour
+            //? Titre
+            &--title {
+                margin: v.$font-xsmall;
+                padding: v.$font-medium;
+                font-size: v.$font-medium;
+            }
+            //? Propriétaire
+            &--owner {
+                margin-left: v.$font-large;
+                font-size: v.$font-small;
+            }
+        }
+        &--firstField {
+            &--description {
+                margin: v.$font-small v.$font-large;
+                padding: v.$font-xsmall;
+                font-size: v.$font-xsmall;
+            }
+            &--openToWork {
+                margin: v.$font-xsmall 0;
+                font-size: v.$font-xsmall + 0.2;
+            }
+        }
+        &--secondField {
+            //? Technos
+            grid-template-columns: repeat(3, 33%);
+            gap: 0.2rem;
+            margin: v.$font-xsmall v.$font-medium;
+            padding: v.$font-xsmall;
+            &--technos {
+                //? Liste des technos
+                &--group {
+                    //? Bloc image + texte
+                    & p {
+                        margin-left: 0.8rem;
+                        font-size: v.$font-xsmall;
+                    }
+                    & img {
+                        width: v.$font-medium;
+                        height: v.$font-medium;
+                    }
+                }
+            }
+        }
+        &--thirdField {
+            // ? Participants
+            grid-template-columns: repeat(4, 25%);
+            gap: v.$font-xsmall;
+            margin: v.$font-xsmall v.$font-medium;
+        }
+        &--fourthField {
+            // ? Boutons
+            display: flex;
+            justify-content: center;
+            margin: v.$font-small auto;
+            //? Bloc entier
+            &--container {
+                //? Style de tous les boutons
+                &--submit,
+                &--delete,
+                &--edit {
+                    padding: v.$font-xxsmall v.$font-large;
+                    font-size: v.$font-xsmall;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-small) {
+        width: 100%;
+        max-width: 50rem;
+        //? Bouton retour
+        &--return {
+            position: absolute;
+            top: 1.5%;
+            right: 6%;
+            & button {
+                padding: v.$font-xxsmall v.$font-small;
+                font-size: v.$font-xsmall;
+            }
+        }
+        // ? Sous titre
+        &--title {
+            padding: 0 v.$font-xxsmall;
+            font-size: v.$font-xsmall;
+        }
+        // ? En-tête
+        &--header {
+            margin-top: 4.3rem; // Pour décaler le header du bouton retour
+            //? Titre
+            &--title {
+                margin: v.$font-xxsmall;
+                padding: v.$font-xsmall v.$font-xxsmall;
+                font-size: v.$font-small;
+            }
+            //? Propriétaire
+            &--owner {
+                margin-left: v.$font-large;
+                font-size: v.$font-xsmall;
+            }
+        }
+        &--firstField {
+            &--description {
+                margin: v.$font-small;
+                padding: v.$font-xsmall;
+                font-size: v.$font-xxsmall + 0.2;
+            }
+            &--openToWork {
+                margin: v.$font-xsmall 0;
+                font-size: v.$font-xxsmall + 0.4;
+            }
+        }
+        &--secondField {
+            //? Technos
+            grid-template-columns: repeat(3, 32%);
+            gap: v.$font-xsmall;
+            margin: v.$font-xsmall v.$font-medium;
+            padding: v.$font-xsmall;
+            &--technos {
+                //? Liste des technos
+                &--group {
+                    //? Bloc image + texte
+                    & p {
+                        margin-left: 0.8rem;
+                        font-size: v.$font-xxsmall + 0.4;
+                    }
+                    & img {
+                        width: v.$font-small;
+                        height: v.$font-small;
+                    }
+                }
+            }
+        }
+        &--thirdField {
+            // ? Participants
+            grid-template-columns: repeat(3, 30%);
+            gap: 0;
+            margin: v.$font-xsmall v.$font-medium;
+        }
+        &--fourthField {
+            // ? Boutons
+            display: flex;
+            justify-content: center;
+            margin: v.$font-small auto;
+            //? Bloc entier
+            &--container {
+                //? Style de tous les boutons
+                &--submit,
+                &--delete,
+                &--edit {
+                    padding: v.$font-xxsmall v.$font-large;
+                    font-size: v.$font-xsmall;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+        max-width: 30rem;
+        //? Bouton retour
+        &--return {
+            position: absolute;
+            top: 2%;
+            right: 5%;
+            & button {
+                padding: v.$font-xxsmall v.$font-small;
+                font-size: v.$font-xsmall;
+            }
+        }
+        // ? Sous titre
+        &--title {
+            padding: 0 v.$font-xxsmall;
+            font-size: v.$font-xsmall;
+        }
+        // ? En-tête
+        &--header {
+            margin-top: 5.5rem; // Pour décaler le header du bouton retour
+            //? Titre
+            &--title {
+                margin: v.$font-xxsmall -0.5rem;
+                padding: v.$font-xxsmall 0;
+                font-size: v.$font-small;
+            }
+            //? Propriétaire
+            &--owner {
+                margin-left: v.$font-medium;
+                font-size: v.$font-xsmall;
+            }
+        }
+        &--firstField {
+            &--description {
+                margin: v.$font-xsmall;
+                padding: v.$font-xsmall;
+                font-size: v.$font-xxsmall + 0.2;
+            }
+            &--openToWork {
+                margin: v.$font-xxsmall 0;
+                font-size: v.$font-xxsmall + 0.4;
+            }
+        }
+        &--secondField {
+            //? Technos
+            grid-template-columns: repeat(2, 49%);
+            gap: 0;
+            margin: v.$font-xsmall;
+            padding: v.$font-xsmall;
+            &--technos {
+                //? Liste des technos
+                &--group {
+                    //? Bloc image + texte
+                    & p {
+                        margin-right: 1.5rem;
+                        font-size: v.$font-xxsmall + 0.2;
+                    }
+                    & img {
+                        width: v.$font-xsmall;
+                        height: v.$font-xsmall;
+                    }
+                }
+            }
+        }
+        &--thirdField {
+            // ? Participants
+            grid-template-columns: repeat(2, 49%);
+            gap: v.$font-xsmall;
+            margin: v.$font-xxsmall v.$font-small;
+        }
+        &--fourthField {
+            // ? Boutons
+            display: flex;
+            justify-content: center;
+            margin: v.$font-small auto;
+            //? Bloc entier
+            &--container {
+                //? Style de tous les boutons
+                &--submit,
+                &--delete,
+                &--edit {
+                    padding: v.$font-xxsmall v.$font-large;
+                    font-size: v.$font-xsmall;
+                }
+            }
+        }
+    }
+}

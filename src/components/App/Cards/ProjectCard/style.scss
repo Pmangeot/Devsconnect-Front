@@ -1,0 +1,416 @@
+@use '../../../../styles/variables' as v;
+@use '../../../../styles/mixins' as m; // @include pour utiliser
+
+//? Carte projet du carousel
+.ProjectCard {
+    display: flex;
+    flex-direction: column;
+    background: v.$color-input;
+    border-radius: v.$border-radius;
+    color: v.$color-darkest;
+    opacity: 1;
+    box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.44);
+    &:hover {
+        scale: 1.02;
+        transition: 0.5s;
+    }
+    &--firstField {
+        &--title {
+            padding: 0 auto;
+            border: 2px solid v.$color-button;
+            border-top: none;
+            border-radius: v.$border-radius v.$border-radius 0 0;
+            background: v.$color-button;
+            color: v.$color;
+            text-align: right;
+            letter-spacing: 0.2rem;
+        }
+        &--availability {
+            text-align: right;
+            font-weight: 700;
+        }
+        &--owner {
+            display: flex;
+            justify-content: left;
+            color: v.$color-darkest;
+            letter-spacing: 0.2rem;
+            white-space: nowrap; //* Empêche le retour à la ligne
+            overflow: hidden; //* Cache le contenu dépassant du cadre
+            text-overflow: ellipsis; //* Ajoute des points de suspension
+            &--title {
+                text-decoration: underline;
+                font-style: italic;
+            }
+            &--name {
+                margin-left: v.$font-xxsmall;
+                color: #2f4f4f;
+                font-weight: 700;
+
+                &:hover {
+                    border-bottom: 1px solid #2f4f4f;
+                }
+            }
+        }
+    }
+    &--secondField {
+        &--technos {
+            display: flex;
+            justify-content: space-evenly;
+        }
+    }
+    &--thirdField {
+        &--description {
+            overflow: auto;
+            text-align: justify;
+            background-color: v.$color;
+            border-radius: v.$border-radius;
+            color: v.$color-darkest;
+            &::-webkit-scrollbar {
+                width: 0 !important;
+            }
+        }
+    }
+    &--fourthField {
+        &--title {
+            color: v.$color-darkest;
+            text-decoration: underline;
+            font-size: v.$font-small;
+            font-style: italic;
+            letter-spacing: 0.2rem;
+        }
+        &--noValidated {
+            font-style: italic;
+            list-style: none;
+            text-align: center;
+            color: rgb(125, 10, 10);
+            border-radius: 1.3rem;
+            font-weight: 700;
+        }
+        &--users {
+            display: grid;
+            overflow: hidden;
+            &--name {
+                width: 90%;
+                color: #025a27;
+                font-weight: 700;
+                white-space: nowrap; //* Empêche le retour à la ligne
+                overflow: hidden; //* Cache le contenu dépassant du cadre
+                text-overflow: ellipsis; //* Ajoute des points de suspension
+                list-style: none;
+                &:hover {
+                    width: fit-content;
+                    max-width: 90%;
+                    border-bottom: 1px solid #2f4f4f;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: v.$mq-large) {
+        margin: v.$font-xsmall auto;
+        padding: 0rem 0 2rem 0;
+        width: 95%;
+        height: 350px; // Hauteur du carousel
+        &--firstField {
+            &--title {
+                padding: v.$font-xxsmall v.$font-xsmall;
+                font-size: v.$font-medium;
+                letter-spacing: 0.5rem;
+            }
+            &--availability {
+                font-size: v.$font-small;
+                padding: 0 1.5rem;
+            }
+            &--owner {
+                margin-top: v.$font-xsmall;
+                padding: 0 1.5rem;
+                font-size: v.$font-small;
+            }
+        }
+        &--secondField {
+            &--technos {
+                gap: v.$font-small;
+                margin: v.$font-small;
+                padding: 0 1.5rem;
+
+                & img {
+                    width: v.$font-large;
+                    max-width: 15%;
+                    height: v.$font-large;
+                }
+            }
+        }
+        &--thirdField {
+            padding: 0 1.5rem;
+            &--description {
+                padding: 1rem 2rem;
+                max-height: 10rem;
+                font-size: v.$font-small;
+            }
+        }
+        &--fourthField {
+            &--title {
+                margin-top: v.$font-xxsmall;
+                padding: 0 1.5rem;
+            }
+            &--noValidated {
+                font-size: v.$font-small;
+            }
+            &--users {
+                grid-template-columns: repeat(5, 20%);
+                padding: 0 1.5rem;
+                max-height: 5.7rem;
+                &--name {
+                    font-size: v.$font-xsmall + 0.2;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-large) {
+        margin: v.$font-xsmall auto;
+        padding: 0 0 2rem 0;
+        width: 95%;
+        height: 290px; // Hauteur du carousel
+        &--firstField {
+            &--title {
+                padding: v.$font-xxsmall v.$font-xsmall;
+                font-size: v.$font-small - 0.2;
+                letter-spacing: 0.5rem;
+            }
+            &--availability {
+                padding: 0 1.5rem;
+                font-size: v.$font-xsmall + 0.2;
+            }
+            &--owner {
+                margin-top: v.$font-xxsmall;
+                padding: 0 1.5rem;
+                font-size: v.$font-xsmall + 0.2;
+            }
+        }
+        &--secondField {
+            &--technos {
+                gap: v.$font-small;
+                margin: v.$font-xsmall;
+                padding: 0 1.5rem;
+                & img {
+                    width: v.$font-medium;
+                    max-width: 12%;
+                    height: v.$font-medium;
+                }
+            }
+        }
+        &--thirdField {
+            padding: 0 1.5rem;
+
+            &--description {
+                max-height: 8rem;
+                padding: 0.7rem 2rem;
+                font-size: v.$font-xsmall + 0.2;
+            }
+        }
+        &--fourthField {
+            &--title {
+                padding: 0 1.5rem;
+                font-size: v.$font-xsmall + 0.3;
+                margin-bottom: v.$font-xxsmall;
+            }
+            &--noValidated {
+                font-size: v.$font-small - 0.2;
+            }
+            &--users {
+                grid-template-columns: repeat(4, 25%);
+                padding: 0 1.5rem;
+
+                max-height: 5.2rem;
+                &--name {
+                    font-size: v.$font-xsmall + 0.1;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        margin: v.$font-xsmall auto;
+        padding: 0 0 2rem 0;
+        width: 94%;
+        height: 280px; // Hauteur du carousel
+        &--firstField {
+            &--title {
+                padding: v.$font-xxsmall v.$font-small;
+                font-size: v.$font-xsmall;
+                letter-spacing: 0.5rem;
+            }
+            &--availability {
+                margin-top: 0;
+                padding: 0 2rem;
+                font-size: v.$font-xsmall;
+            }
+            &--owner {
+                margin-top: v.$font-xxsmall - 0.3;
+                padding: 0 2rem;
+                font-size: v.$font-xsmall + 0.2;
+            }
+        }
+        &--secondField {
+            &--technos {
+                gap: v.$font-small;
+                margin: v.$font-xsmall;
+                padding: 0 2rem;
+                & img {
+                    width: v.$font-medium;
+                    max-width: 7%;
+                    height: v.$font-medium;
+                }
+            }
+        }
+        &--thirdField {
+            padding: 0 2rem;
+
+            &--description {
+                padding: 0.9rem 1.3rem;
+                max-height: 8.5rem;
+                font-size: v.$font-xsmall;
+            }
+        }
+        &--fourthField {
+            &--title {
+                padding: 0 2rem;
+
+                font-size: v.$font-xsmall + 0.2;
+            }
+            &--noValidated {
+                font-size: v.$font-small - 0.4;
+            }
+            &--users {
+                grid-template-columns: repeat(4, 25%);
+                padding: 0 2rem;
+
+                max-height: 6.3rem;
+                &--name {
+                    font-size: v.$font-xsmall;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-small) {
+        margin: v.$font-xsmall auto;
+        padding: 0 0 2rem 0;
+        width: 100%;
+        height: 230px; // Hauteur du carousel
+        &--firstField {
+            &--title {
+                padding: v.$font-xxsmall v.$font-xsmall;
+                font-size: v.$font-xsmall;
+                letter-spacing: 0.3rem;
+            }
+            &--availability {
+                margin-top: 0;
+                padding: 0 1.5rem;
+                font-size: v.$font-xxsmall + 0.2;
+            }
+            &--owner {
+                margin-top: v.$font-xxsmall - 0.3;
+                padding: 0 1.5rem;
+                font-size: v.$font-xsmall - 0.1;
+            }
+        }
+        &--secondField {
+            &--technos {
+                gap: v.$font-small;
+                margin: v.$font-xxsmall - 0.3;
+                padding: 0 1.5rem;
+                & img {
+                    width: v.$font-medium;
+                    max-width: 4%;
+                    height: v.$font-medium;
+                }
+            }
+        }
+        &--thirdField {
+            padding: 0 1.5rem;
+            &--description {
+                padding: 0.5rem 1.2rem;
+                max-height: 7rem;
+                font-size: v.$font-xxsmall + 0.2;
+            }
+        }
+        &--fourthField {
+            &--title {
+                margin-bottom: v.$font-xxsmall - 0.3;
+                padding: 0 1.5rem;
+                font-size: v.$font-xsmall - 0.1;
+            }
+            &--noValidated {
+                font-size: v.$font-xsmall;
+            }
+            &--users {
+                grid-template-columns: repeat(3, 33%);
+                padding: 0 1.5rem;
+                max-height: 5.4rem;
+                &--name {
+                    margin-top: 0;
+                    font-size: v.$font-xsmall - 0.1;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+        margin: v.$font-xxsmall auto;
+        padding: 0 0 1rem 0;
+        width: 100%;
+        height: 190px; // Hauteur du carousel
+        &--firstField {
+            &--title {
+                padding: v.$font-xxsmall v.$font-xsmall;
+                font-size: v.$font-xsmall;
+                letter-spacing: 0;
+            }
+            &--availability {
+                margin-top: v.$font-xxsmall - 0.3;
+                padding: 0 1rem;
+                font-size: v.$font-xxsmall + 0.1;
+            }
+            &--owner {
+                margin-top: v.$font-xxsmall - 0.3;
+                padding: 0 1rem;
+                font-size: v.$font-xxsmall + 0.2;
+            }
+        }
+        &--secondField {
+            &--technos {
+                gap: v.$font-small;
+                padding: 0 1rem;
+                & img {
+                    width: v.$font-large;
+                    max-width: 4.7%;
+                    height: v.$font-medium;
+                }
+            }
+        }
+        &--thirdField {
+            padding: 0 1rem;
+            &--description {
+                padding: 0.3rem 1.2rem;
+                max-height: 5rem;
+                font-size: 0.6rem;
+            }
+        }
+        &--fourthField {
+            &--title {
+                padding: 0 1rem;
+                font-size: v.$font-xxsmall + 0.2;
+            }
+            &--noValidated {
+                font-size: v.$font-xsmall - 0.2;
+            }
+            &--users {
+                grid-template-columns: repeat(3, 33%);
+                padding: 0 1rem;
+                max-height: 3.8rem;
+                &--name {
+                    margin-top: 0;
+                    font-size: v.$font-xxsmall + 0.2;
+                }
+            }
+        }
+    }
+}

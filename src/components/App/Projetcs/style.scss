@@ -1,0 +1,49 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/mixins' as m; // @include pour utiliser
+
+//? Container des cartes
+.Projects {
+    flex-grow: 1; // Permet de descendre le footer en bas de page
+    //? Titre
+    &--title {
+        text-align: center;
+        padding: v.$font-xsmall;
+        font-size: v.$font-large;
+    }
+    //? Container des cartes
+    &--containerCard {
+        display: grid;
+        margin: 0 auto; // Permet de centrer les cartes
+        padding: v.$font-xsmall;
+    }
+    @media screen and (min-width: 1400px) {
+        &--containerCard {
+            max-width: 140rem; // Permet de limiter la largeur du container
+        }
+    }
+    @media screen and (max-width: 1400px) {
+        &--containerCard {
+            max-width: 140rem; // Permet de limiter la largeur du container
+        }
+    }
+    @media screen and (min-width: v.$mq-large) {
+        &--containerCard {
+            grid-template-columns: repeat(2, 50%);
+        }
+    }
+    @media screen and (max-width: v.$mq-large) {
+        &--containerCard {
+            grid-template-columns: repeat(2, 50%);
+            justify-content: center;
+        }
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        &--containerCard {
+            grid-template-columns: repeat(1, 100%);
+        }
+    }
+    @media screen and (max-width: v.$mq-small) {
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+    }
+}

@@ -1,0 +1,30 @@
+@use '../../../../../styles/variables' as v;
+@use '../../../../../styles/mixins' as m; // @include pour utiliser
+
+//! Une partie du CSS du composant <Select /> est ici
+//! Comme c'est un composant externe material UI, le CSS est importé dans le fichier JS
+//! Ici, c'est le css des icônes et labels technos provenant de la fonction mapTechnos()
+
+//? Taille des icones
+.Select--techno--flex {
+    display: flex; // Permet de mettre en ligne textes et icônes dans le menu déroulant
+    justify-content: left; // Alignement à gauche
+    align-items: center; // Alignement vertical
+    padding: 0.5rem; // Écarte légèrement les éléments entre eux
+}
+.Select--techno-svg {
+    @media screen and (min-width: v.$mq-large) {
+        margin-right: 2rem; // textes et icônes légèrement espacé les uns des autres
+        width: 30px;
+        height: 30px;
+    }
+    @media screen and (max-width: v.$mq-large) {
+        margin-right: 2rem; // textes et icônes légèrement espacé les uns des autres
+        width: 30px;
+        height: 30px;
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        width: 20px;
+        height: 20px;
+    }
+}

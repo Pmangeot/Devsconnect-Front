@@ -1,0 +1,64 @@
+@use '../../../styles/mixins' as m; // @include pour utiliser
+@use '../../../styles/variables' as v;
+
+.Home {
+    margin: 2rem 0;
+    flex-grow: 1;
+
+    & img {
+        display: block;
+        margin: 0 auto;
+        width: 90%;
+        max-width: 35rem;
+        height: auto;
+    }
+
+    &__text {
+        margin: 0 auto;
+        padding: 2rem;
+        text-align: justify;
+    }
+
+    & p {
+        margin: 1rem 0;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .Home {
+        & img {
+            width: 50%;
+        }
+        &__text {
+            width: 90%;
+        }
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .Home {
+        & img {
+            width: 55%;
+        }
+    }
+}
+
+@media screen and (min-width: 720px) {
+    .Home {
+        & img {
+            width: 60%;
+        }
+        &__text {
+            width: 75%;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .Home {
+        &__text {
+            width: 60%;
+            max-width: 80rem;
+        }
+    }
+}

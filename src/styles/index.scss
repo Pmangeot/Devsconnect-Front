@@ -1,0 +1,200 @@
+@use 'reset'; // On importe le reset css
+@use 'variables' as v; // On importe les variables
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+// Retire le fond bleu du focus sur les éléments
+// Fait pour Chrome, sous firefox, le fond des classes du code sont prises en compte
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    box-shadow: inset 70px 70px 20px 20px #d3d3d3;
+}
+:focus {
+    outline: none; // On supprime lergb(246, 245, 245)par défaut
+}
+html {
+    font-size: 62.5%; // 10px par default, facilite les calculs de taille
+}
+
+body {
+    background: v.$color-light; // On choisit la couleur d'arrière plan
+    font-family: v.$font-sans; // On choisit la police par défaut
+    font-size: 1.6rem; // On règle la taille de police par défaut
+    -webkit-text-size-adjust: none; // Réglage pour apple
+}
+
+.devsConnect {
+    display: flex; // On passe le conteneur en flexbox pour pouvoir utiliser les propriétés flex grow
+    flex-grow: 1;
+    flex-direction: column;
+    min-height: 100vh; // On règle la hauteur à 100vh pour que tout l'espace vertical soit pris
+}
+
+// Meme utilité qu'au dessus, mais comme le component Error n'est pas dans la classe .devsConnect, on doit le réécrire
+#root {
+    display: flex; // On passe le conteneur en flexbox pour pouvoir utiliser les propriétés flex grow
+    flex-direction: column; // On règle la direction du flexbox en colonne
+    min-height: 100vh; // On règle la hauteur à 100vh pour que tout l'espace vertical soit pris
+}
+
+.visible {
+    display: block;
+}
+.hidden {
+    display: none;
+}
+
+.Loader {
+    flex-grow: 1;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    & p {
+        text-align: center;
+        color: grey;
+    }
+}
+
+//! Couleur du texte `disponible/indisponible` dans membre(s)/projet(s)
+.open {
+    color: green;
+}
+.close {
+    color: rgb(203, 57, 57);
+}
+
+//! Pour le résultat de recherche vide
+.noResult {
+    color: rgb(125, 10, 10);
+    font-size: 2rem;
+    text-align: center;
+}
+
+// ! Composant Mui Message flash
+// Container
+.MuiAlert-root {
+    z-index: 99999;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    &.MuiAlert-standardError,
+    &.MuiAlert-standardSuccess {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+    }
+    &.MuiAlert-standardError {
+        background-color: rgb(120, 63, 63);
+    }
+
+    &.MuiAlert-standardSuccess {
+        background-color: rgb(63, 163, 88);
+    }
+
+    // Icône
+    .MuiAlert-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & svg {
+            color: #fefefe;
+        }
+    }
+
+    // Message texte
+    .MuiAlert-message {
+        color: #fefefe;
+        font-weight: 700;
+    }
+
+    @media screen and (min-width: v.$mq-large) {
+        top: 8rem;
+        &.MuiAlert-standardError,
+        &.MuiAlert-standardSuccess {
+            width: 50%;
+        }
+        // Icône
+        .MuiAlert-icon {
+            & svg {
+                width: 3rem;
+                height: 3rem;
+            }
+        }
+        // Message texte
+        .MuiAlert-message {
+            font-size: 1.6rem;
+        }
+    }
+    @media screen and (max-width: v.$mq-large) {
+        top: 6.5rem;
+        &.MuiAlert-standardError,
+        &.MuiAlert-standardSuccess {
+            width: 50%;
+        }
+        // Icône
+        .MuiAlert-icon {
+            & svg {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+        }
+        // Message texte
+        .MuiAlert-message {
+            font-size: 1.4rem;
+        }
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        top: v.$height-header-medium;
+        &.MuiAlert-standardError,
+        &.MuiAlert-standardSuccess {
+            width: 60%;
+        }
+        // Icône
+        .MuiAlert-icon {
+            & svg {
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+        // Message texte
+        .MuiAlert-message {
+            font-size: 1.3rem;
+        }
+    }
+    // Jusqu'à 500px (mobile)
+    @media screen and (max-width: v.$mq-small) {
+        top: v.$height-header-small;
+        &.MuiAlert-standardError,
+        &.MuiAlert-standardSuccess {
+            width: 100%;
+        }
+        // Message texte
+        .MuiAlert-message {
+            font-size: 1rem;
+        }
+    }
+    // Jusqu'à 320px (mobile)
+    @media screen and (max-width: v.$mq-xsmall) {
+        top: v.$height-header-xsmall;
+        // Icône
+        .MuiAlert-icon {
+            & svg {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+        }
+        // Message texte
+        .MuiAlert-message {
+            font-size: 1rem;
+        }
+    }
+}

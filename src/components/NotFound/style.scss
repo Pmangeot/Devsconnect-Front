@@ -1,0 +1,24 @@
+@use '../../styles/variables' as v;
+
+.not-found {
+    margin: v.$gutter;
+    text-align: center;
+    flex-grow: 1;
+
+    h1 {
+        font-family: v.$font-title;
+        font-weight: v.$font-title-weight;
+        color: v.$color-darkest;
+        font-size: 5.5625rem;
+        height: v.$gutter * 8;
+        line-height: v.$gutter * 8;
+    }
+
+    p {
+        margin-bottom: v.$gutter;
+    }
+
+    i {
+        color: v.$color;
+    }
+}

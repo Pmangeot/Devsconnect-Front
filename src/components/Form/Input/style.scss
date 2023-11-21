@@ -1,0 +1,174 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/mixins' as m; // @include pour utiliser
+
+// ! Style pour les erreurs/succès de formulaire
+//? Container d'input
+
+.Input {
+    .MuiInputBase-root {
+        background-color: v.$color;
+        & input,
+        & textarea {
+            &::placeholder {
+                opacity: 1;
+            }
+        }
+        @media screen and (min-width: v.$mq-large) {
+            & input,
+            & textarea {
+                font-size: 1.3rem;
+
+                &::placeholder {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+        @media screen and (max-width: v.$mq-large) {
+            & input,
+            & textarea {
+                font-size: 1.2rem;
+
+                &::placeholder {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+        @media screen and (max-width: v.$mq-medium) {
+            & input,
+            & textarea {
+                font-size: 1.1rem;
+
+                &::placeholder {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+        @media screen and (max-width: v.$mq-small) {
+            & input,
+            & textarea {
+                font-size: 1rem;
+
+                &::placeholder {
+                    font-size: 1rem;
+                }
+            }
+        }
+        @media screen and (max-width: v.$mq-xsmall) {
+            & input,
+            & textarea {
+                font-size: 0.9rem;
+
+                &::placeholder {
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+    //? Label
+    .MuiFormLabel-root {
+        @media screen and (min-width: v.$mq-large) {
+            font-size: 1.3rem;
+        }
+        @media screen and (max-width: v.$mq-large) {
+            font-size: 1.2rem;
+        }
+        @media screen and (max-width: v.$mq-medium) {
+            font-size: 1.1rem;
+        }
+        @media screen and (max-width: v.$mq-small) {
+            font-size: 1rem;
+        }
+        @media screen and (max-width: v.$mq-xsmall) {
+            font-size: 0.9rem;
+        }
+    }
+    .MuiFormHelperText-root {
+        @media screen and (min-width: v.$mq-large) {
+            font-size: 1.5rem;
+        }
+        @media screen and (max-width: v.$mq-large) {
+            font-size: 1.3rem;
+        }
+        @media screen and (max-width: v.$mq-medium) {
+            font-size: 1.2rem;
+        }
+        @media screen and (max-width: v.$mq-small) {
+            font-size: 0.8rem;
+        }
+        @media screen and (max-width: v.$mq-xsmall) {
+            font-size: 0.6rem;
+        }
+    }
+    .MuiSvgIcon-root {
+        cursor: pointer;
+    }
+}
+
+.Input-dark {
+    .MuiInputBase-root {
+        background-color: v.$color-input;
+        & input,
+        & textarea {
+            color: v.$color-darkest;
+            &::placeholder {
+                color: v.$color-darkest;
+            }
+        }
+    }
+
+    //? Textarea
+    .MuiInputBase-inputMultiline {
+        &::placeholder {
+            color: v.$color-darkest;
+        }
+    }
+
+    //? Label
+    .MuiFormLabel-root {
+        color: v.$color-darkest;
+    }
+
+    //? Icône d'ceil pour afficher le mot de passe
+    .MuiSvgIcon-root {
+        color: v.$color-darkest;
+    }
+}
+
+//! Couleur plus clair dans les modales
+.Input-light {
+    // border-radius: v.$border-radius;
+    .MuiInputBase-root {
+        background-color: v.$color-input;
+        & input,
+        & textarea {
+            color: v.$color;
+            &::placeholder {
+                color: v.$color;
+            }
+        }
+    }
+
+    //? Textarea
+    .MuiInputBase-inputMultiline {
+        &::placeholder {
+            color: v.$color;
+        }
+    }
+
+    //? Label
+    .MuiFormLabel-root {
+        color: v.$color;
+    }
+
+    //? Icône d'ceil pour afficher le mot de passe
+    .MuiSvgIcon-root {
+        color: v.$color;
+    }
+}
+
+.wrong {
+    color: rgba(185, 6, 6, 0.9);
+}
+.good {
+    color: rgba(6, 133, 38, 0.9);
+}

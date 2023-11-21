@@ -1,0 +1,35 @@
+@use './variables' as v;
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin modale {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed; // position fixed pour que le formulaire reste prenne tout l'écran
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); // Pour centrer le formulaire
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(0.3rem);
+    background-color: rgba(0, 0, 0, 0.6); // Effet de transparence
+    z-index: 9999; // Au dessus de tout
+    overflow: auto;
+}
+
+@mixin close-modale {
+    position: absolute; // Position absolute pour sortir du flux
+    top: v.$font-small;
+    right: v.$font-small;
+    padding: 0 v.$font-xsmall;
+    border: 0.3rem solid v.$color;
+    border-radius: 50%;
+    color: v.$color;
+    font-size: 1.5em;
+    cursor: pointer;
+}

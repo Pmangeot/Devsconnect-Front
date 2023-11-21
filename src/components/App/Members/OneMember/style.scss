@@ -1,0 +1,1216 @@
+@use '../../../../styles/variables' as v;
+@use '../../../../styles/mixins' as m; // @include pour utiliser
+
+//? Même style pour OneMember et MyProfile
+.Member {
+    flex-grow: 1; // Pour que le container prenne toute la place disponible
+    position: relative; // Pour positionner le bouton retour
+    margin: 0 auto; // Pour centrer le container
+    //? Bouton retour
+    &--return {
+        position: absolute;
+        top: 2%;
+        right: 0;
+        & button {
+            padding: v.$font-xxsmall v.$font-large;
+            background: v.$color;
+            color: v.$color-darkest;
+            border-radius: v.$border-radius;
+            font-weight: 700;
+            cursor: pointer;
+            &:hover {
+                background: v.$color-darkest;
+                color: v.$color;
+            }
+        }
+    }
+    // ? Sous titre
+    &--legend {
+        color: v.$color-darkest;
+        text-align: center;
+        text-decoration: underline;
+        font-weight: 700;
+    }
+    // ? En-tête
+    &--header {
+        &--container {
+            //* Bloc complet sans le message d'erreur
+            display: flex;
+            //? Titre
+            &--title {
+                color: v.$color-darkest;
+            }
+            &--image {
+                position: relative; // Pour positionner le bouton upload
+                &--profil {
+                    width: 100%;
+                    height: auto;
+                    border-radius: v.$border-radius;
+                }
+                &--upload {
+                    cursor: pointer; // Sert de bouton pour modifier l'image
+                }
+                &--contact {
+                    //? Bouton pour modifier l'image
+                    margin: v.$font-xsmall 0;
+                    background-color: v.$color-button;
+                    color: v.$color;
+                    border-radius: v.$border-radius;
+                    font-weight: 700;
+                    & a {
+                        display: block;
+                        margin: 0 auto;
+                        width: fit-content;
+                    }
+                }
+            }
+        }
+        &--errorMessage {
+            //* Message d'erreur sous l'image
+            text-align: center;
+        }
+    }
+    &--content {
+        //* Formulaire
+        // display: flex;
+        &--firstField,
+        &--secondField,
+        &--thirdField {
+            border: none;
+        }
+        &--firstField {
+            //* Partie informations personnelles
+            //? 4 zones dans cette partie :
+            // 1. Nom, prénom, pseudo, email (//?inputText)
+            // 2. Mot de passe (//?password)
+            // 3. Description (//?description)
+            // 4. Ouvert à de nouvelles opportunités (//?openToWork)
+            display: flex;
+            flex-direction: column;
+            &--inputText {
+                //? 1ere partie
+                display: grid;
+                justify-items: center;
+            }
+            &--password,
+            &--password--button {
+                //? 2eme partie
+                &--button {
+                    background-color: v.$color-darkest;
+                    color: v.$color;
+                    border-radius: v.$border-radius;
+                    opacity: 0.8;
+                    font-weight: 700;
+                    cursor: pointer;
+                }
+            }
+            &--description {
+                //? 3eme partie
+                // Réglages dans les media queries
+                &--reading {
+                    background-color: v.$color-input;
+                    border-radius: v.$border-radius;
+                    color: v.$color-darkest;
+                }
+            }
+            &--openToWork {
+                //? 4eme partie
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &--reading {
+                    margin: v.$font-xxsmall 0;
+                    font-weight: 700;
+                    text-align: center;
+                }
+            }
+        }
+        &--secondField {
+            //* Partie languages
+            border-top: 2px dashed v.$color-darkest; // On délimite le haut avec un trait
+            border-bottom: 2px dashed v.$color-darkest; // On délimite le bas avec un trait
+            //? Technos
+            &--container {
+                &--text {
+                    text-align: center;
+                }
+                &--technos {
+                    //? Liste des technos
+                    display: grid;
+                    background-color: v.$color-input;
+                    border-radius: v.$border-radius;
+                    color: v.$color-darkest;
+                    opacity: 0.9;
+                    &--group,
+                    &--group--selected {
+                        //? Bloc image + texte
+                        display: flex;
+                        align-items: center;
+                        & p {
+                            font-weight: 700;
+                        }
+                        &--selected {
+                            background-color: rgb(91, 166, 91, 0.2);
+                            border-radius: v.$border-radius;
+                        }
+                    }
+                }
+            }
+        }
+        &--thirdField {
+            //* Partie projets
+            position: relative; // Pour positionner le carousel
+        }
+    }
+    &--fourthField {
+        //* Partie boutons
+        border: none;
+        //? Bloc entier
+        &--container {
+            //? Style de tous les boutons
+            &--submit,
+            &--delete,
+            &--visible,
+            &--cancel {
+                border-radius: v.$border-radius;
+                color: white;
+                font-weight: 700;
+                cursor: pointer;
+            }
+            // //? Bouton Annuler
+            &--cancel {
+                border: 0.2rem solid v.$color-darkest;
+                color: v.$color-darkest;
+            }
+            //? Bouton supprimer
+            &--delete {
+                background: rgb(125, 26, 26);
+                border: 0.2rem solid rgb(125, 26, 26);
+            }
+            //? Bouton Valider
+            &--updatedMode {
+                background: green;
+                border: 0.2rem solid green;
+            }
+            //? Bouton modifier
+            &--submittedMode {
+                background: rgb(240, 168, 35);
+                border: 0.2rem solid rgb(240, 168, 35);
+            }
+        }
+    }
+
+    @media screen and (min-width: v.$mq-large) {
+        width: 95%; // Largeur du container
+        max-width: 90rem; // Largeur max du container
+        font-size: v.$font-medium; // Taille de la police
+        // ? Sous titre
+        &--legend {
+            padding: 0 v.$font-large; // Espace entre le titre et le container
+            font-size: v.$font-large;
+        }
+        // ? En-tête
+        &--header {
+            margin: v.$font-medium 0;
+            &--container {
+                //* Bloc complet sans le message d'erreur
+                position: relative; // Pour positionner le titre qui est en absolute
+                margin-top: 8rem;
+                //? Titre
+                &--title {
+                    position: absolute; // Pour positionner le titre au centre peu importe si il y a un message d'erreur
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: v.$font-xlarge;
+                }
+                &--image {
+                    &--profil {
+                        margin: v.$font-xsmall v.$font-xsmall 0;
+                        width: 20rem;
+                        border: 2px solid v.$color-darkest;
+                    }
+                    &--upload {
+                        position: absolute;
+                        bottom: 8%;
+                        right: 20%;
+                        width: 13%;
+                    }
+                    &--contact {
+                        & a {
+                            padding: v.$font-small v.$font-large; // Pour agrandir la surface du bouton
+                        }
+                    }
+                }
+            }
+            &--errorMessage {
+                //* Message d'erreur sous l'image
+                font-size: 1.2rem;
+            }
+        }
+        &--content {
+            //* Formulaire
+            &--firstField,
+            &--secondField,
+            &--thirdField {
+                padding: v.$font-xsmall;
+            }
+            &--firstField {
+                //* Partie informations personnelles
+                //? 4 zones dans cette partie :
+                // 1. Nom, prénom, pseudo, email (//?inputText)
+                // 2. Mot de passe (//?password)
+                // 3. Description (//?description)
+                // 4. Ouvert à de nouvelles opportunités (//?openToWork)
+                &--inputText {
+                    //? 1ere partie
+                    grid-template-columns: repeat(2, 1fr); // 2 champs por ligne
+                    gap: v.$font-xxsmall v.$font-medium;
+                    &--firstname,
+                    &--lastname,
+                    &--email,
+                    &--pseudo {
+                        width: 100%; // Largeur des champs
+                    }
+                }
+                &--password,
+                &--password--button {
+                    //? 2eme partie
+                    width: 60%;
+                    &--button {
+                        margin: v.$font-small auto;
+                        padding: v.$font-small v.$font-large;
+                        border: 0.2rem solid v.$color;
+                        border-radius: v.$border-radius;
+                        font-size: v.$font-small;
+                    }
+                }
+                &--description {
+                    //? 3eme partie
+                    width: 100%; // Pour que la largeur soit égale à celle de la partie 1
+                    &--reading {
+                        margin: v.$font-medium 0;
+                        padding: v.$font-medium;
+                    }
+                }
+                &--openToWork {
+                    //? 4eme partie
+                    margin: v.$font-xsmall 0;
+                    &--text {
+                        padding-right: v.$font-medium;
+                    }
+                }
+            }
+            &--secondField {
+                //* Partie languages
+                //? Technos
+                &--container {
+                    margin: v.$font-small 0;
+                    &--text {
+                        font-size: v.$font-small;
+                    }
+                    &--technos {
+                        //? Liste des technos
+                        grid-template-columns: repeat(
+                            3,
+                            1fr
+                        ); // 3 languages par lignes
+                        margin: v.$font-medium 0;
+                        padding: 0 v.$font-medium;
+                        &--group,
+                        &--group--selected {
+                            //? Bloc image + texte
+                            gap: v.$font-medium;
+                            margin: v.$font-xsmall 0;
+                            & img {
+                                width: v.$font-medium;
+                                height: v.$font-medium;
+                            }
+                            &--selected {
+                                padding: 0.3rem v.$font-xsmall;
+                                width: 80%;
+                                border: 2px solid rgb(91, 166, 91);
+                            }
+                        }
+                    }
+                }
+            }
+            &--thirdField {
+                //* Partie projets
+                height: 470px; // Adapter à la hauteur du carousel
+            }
+        }
+        &--fourthField {
+            //* Partie boutons
+            margin: v.$font-large 0; // Pour espacer le bloc en hauteur
+            //? Bloc entier
+            &--container {
+                // On écarte le bouton supprimer, des boutons annuler et valider
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+                //? Boutons Annuler et Valider
+                &--group {
+                    // On regroupe les boutons annuler et valider
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                //? Style de tous les boutons
+                &--submit,
+                &--delete,
+                &--visible,
+                &--cancel {
+                    padding: v.$font-xsmall v.$font-large; // Pour agrandir la surface du bouton
+                }
+                //? Bouton Supprimer
+                &--delete {
+                    width: 30rem;
+                }
+                // //? Bouton Annuler
+                &--cancel {
+                    width: 15rem;
+                    border-right: none; // Pour coller le bouton avec le bouton valider
+                    border-radius: v.$border-radius 0 0 v.$border-radius; // Pour rendre droit la face commune avec valider
+                }
+                //? Bouton Valider
+                &--updatedMode {
+                    width: 15rem;
+                    border-radius: 0 v.$border-radius v.$border-radius 0; // Pour rendre droit la face commune avec annuler
+                }
+                //? Bouton Modifier
+                &--visible {
+                    width: 30rem;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-large) {
+        width: 95%; // Largeur du container
+        max-width: 75rem; // Largeur du container
+        font-size: v.$font-small; // Taille de la police
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-small;
+            font-size: v.$font-medium;
+        }
+        // ? En-tête
+        &--header {
+            margin: v.$font-small 0;
+            &--container {
+                //* Bloc complet sans le message d'erreur
+                position: relative; // Pour positionner le titre qui est en absolute
+                margin-top: 6rem;
+                //? Titre
+                &--title {
+                    position: absolute; // Pour positionner le titre au centre peu importe si il y a un message d'erreur
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: v.$font-large;
+                }
+                &--image {
+                    &--profil {
+                        margin: v.$font-xsmall v.$font-xsmall 0;
+                        width: 16rem;
+                        border: 2px solid v.$color-darkest;
+                    }
+                    &--upload {
+                        position: absolute;
+                        bottom: 8%;
+                        right: 20%;
+                        width: 13%;
+                    }
+                    &--contact {
+                        & a {
+                            padding: v.$font-small v.$font-medium; // Pour agrandir la surface du bouton
+                        }
+                    }
+                }
+            }
+            &--errorMessage {
+                //* Message d'erreur sous l'image
+                font-size: 1rem;
+            }
+        }
+        &--content {
+            //* Formulaire
+            &--firstField {
+                //* Partie informations personnelles
+                //? 4 zones dans cette partie :
+                // 1. Nom, prénom, pseudo, email (//?inputText)
+                // 2. Mot de passe (//?password)
+                // 3. Description (//?description)
+                // 4. Ouvert à de nouvelles opportunités (//?openToWork)
+                &--inputText {
+                    margin: v.$font-small 0 0;
+                    //? 1ere partie
+                    grid-template-columns: repeat(2, 1fr); // 2 champs por ligne
+                    gap: v.$font-small;
+                    &--firstname,
+                    &--lastname,
+                    &--email,
+                    &--pseudo {
+                        width: 90%; // Largeur des champs
+                    }
+                }
+                &--password,
+                &--password--button {
+                    //? 2eme partie
+                    width: 60%;
+                    &--button {
+                        margin: v.$font-small auto;
+                        padding: v.$font-small v.$font-large;
+                        border: 0.2rem solid v.$color;
+                        font-size: v.$font-small;
+                    }
+                }
+                &--description {
+                    //? 3eme partie
+                    width: 95%; // Pour que la largeur soit égale à celle de la partie 1
+                    &--reading {
+                        margin: v.$font-medium 0;
+                        padding: v.$font-medium;
+                    }
+                }
+                &--openToWork {
+                    //? 4eme partie
+                    margin: 0 auto v.$font-xsmall;
+                    &--text {
+                        padding-right: v.$font-small;
+                    }
+                }
+            }
+            &--secondField {
+                //* Partie languages
+                //? Technos
+                &--container {
+                    margin: v.$font-small 0;
+                    &--text {
+                        font-size: v.$font-small;
+                    }
+                    &--technos {
+                        //? Liste des technos
+                        grid-template-columns: repeat(
+                            3,
+                            1fr
+                        ); // 3 languages par lignes
+                        margin: v.$font-small 0;
+                        padding: v.$font-xsmall v.$font-medium;
+                        &--group,
+                        &--group--selected {
+                            //? Bloc image + texte
+                            gap: v.$font-small;
+                            margin: v.$font-xsmall 0;
+                            & img {
+                                width: v.$font-medium;
+                                height: v.$font-medium;
+                            }
+                            &--selected {
+                                padding: 0.3rem v.$font-xsmall;
+                                width: 80%;
+                                border: 2px solid rgb(91, 166, 91);
+                            }
+                        }
+                    }
+                }
+            }
+            &--thirdField {
+                //* Partie projets
+                height: 390px; // Adapter à la hauteur du carousel
+            }
+        }
+        &--fourthField {
+            //* Partie boutons
+            margin: v.$font-medium 0 v.$font-large; // Pour espacer le bloc en hauteur
+            //? Bloc entier
+            &--container {
+                // On écarte le bouton supprimer, des boutons annuler et valider
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+                //? Boutons Annuler et Valider
+                &--group {
+                    // On regroupe les boutons annuler et valider
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                //? Style de tous les boutons
+                &--submit,
+                &--delete,
+                &--visible,
+                &--cancel {
+                    padding: v.$font-xsmall v.$font-medium; // Pour agrandir la surface du bouton
+                }
+                //? Bouton Supprimer
+                &--delete {
+                    width: 30rem;
+                }
+                // //? Bouton Annuler
+                &--cancel {
+                    border-right: none; // Pour coller le bouton avec le bouton valider
+                    border-radius: v.$border-radius 0 0 v.$border-radius; // Pour rendre droit la face commune avec valider
+                    width: 15rem;
+                }
+                //? Bouton Valider
+                &--updatedMode {
+                    border-radius: 0 v.$border-radius v.$border-radius 0; // Pour rendre droit la face commune avec annuler
+                    width: 15rem;
+                }
+                //? Bouton Modifier
+                &--visible {
+                    width: 30rem;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        width: 90%; // Largeur du container
+        max-width: 75rem; // Largeur du container
+        font-size: v.$font-small; // Taille de la police
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-xsmall;
+            font-size: v.$font-medium;
+        }
+        // ? En-tête
+        &--header {
+            margin: v.$font-xxlarge 0 0;
+
+            &--container {
+                flex-direction: column-reverse;
+                //* Bloc complet sans le message d'erreur
+                //? Titre
+                &--title {
+                    position: relative;
+                    top: unset;
+                    left: unset;
+                    transform: unset;
+                    margin: v.$font-small;
+                    text-align: center;
+                    font-size: v.$font-large;
+                }
+                &--image {
+                    width: fit-content; // Aide au placement de l'icône d'upload
+                    margin: 0 auto; // Centre le container
+                    &--profil {
+                        margin: 0;
+                        width: 15rem;
+                        border: 2px solid v.$color-darkest;
+                    }
+                    &--upload {
+                        position: absolute;
+                        bottom: 7%;
+                        right: 10%;
+                        width: 15%;
+                    }
+                    &--contact {
+                        & a {
+                            padding: v.$font-small v.$font-medium; // Pour agrandir la surface du bouton
+                        }
+                    }
+                }
+            }
+            &--errorMessage {
+                //* Message d'erreur sous l'image
+                display: block; // Pour que le message puisse être centré
+                margin: v.$font-xsmall auto;
+                font-size: 1rem;
+            }
+        }
+        &--content {
+            //* Formulaire
+            &--firstField {
+                //* Partie informations personnelles
+                //? 4 zones dans cette partie :
+                // 1. Nom, prénom, pseudo, email (//?inputText)
+                // 2. Mot de passe (//?password)
+                // 3. Description (//?description)
+                // 4. Ouvert à de nouvelles opportunités (//?openToWork)
+                &--inputText {
+                    margin: v.$font-xsmall 0 0;
+                    //? 1ere partie
+                    grid-template-columns: repeat(1, 1fr); // 2 champs por ligne
+                    gap: v.$font-xxsmall;
+                    &--firstname,
+                    &--lastname,
+                    &--email,
+                    &--pseudo {
+                        width: 90%; // Largeur des champs
+                    }
+                }
+                &--password,
+                &--password--button {
+                    //? 2eme partie
+                    width: 50%;
+                    &--button {
+                        margin: v.$font-xsmall auto;
+                        padding: v.$font-xsmall v.$font-small;
+                        border: 0.2rem solid v.$color;
+                        font-size: v.$font-small;
+                    }
+                }
+                &--description {
+                    //? 3eme partie
+                    width: 90%; // Pour que la largeur soit égale à celle de la partie 1
+                    &--reading {
+                        margin: v.$font-small 0;
+                        padding: v.$font-small;
+                    }
+                }
+                &--openToWork {
+                    //? 4eme partie
+                    margin: 0 auto v.$font-xxsmall;
+                    &--text {
+                        padding-right: v.$font-xsmall;
+                    }
+                }
+            }
+            &--secondField {
+                //* Partie languages
+                //? Technos
+                &--container {
+                    margin: v.$font-small 0;
+                    &--text {
+                        font-size: v.$font-xsmall;
+                    }
+                    &--technos {
+                        //? Liste des technos
+                        grid-template-columns: repeat(
+                            2,
+                            1fr
+                        ); // 2 languages par lignes
+                        margin: v.$font-small 0;
+                        padding: v.$font-xsmall v.$font-medium;
+                        &--group,
+                        &--group--selected {
+                            //? Bloc image + texte
+                            gap: v.$font-small;
+                            margin: v.$font-xsmall v.$font-small;
+                            & img {
+                                width: v.$font-medium;
+                                height: v.$font-medium;
+                            }
+                            &--selected {
+                                padding: 0.3rem v.$font-xsmall;
+                                width: 80%;
+                                border: 3px solid rgb(91, 166, 91);
+                            }
+                        }
+                    }
+                }
+            }
+            &--thirdField {
+                //* Partie projets
+                height: 380px; // Adapter à la hauteur du carousel
+            }
+        }
+        &--fourthField {
+            //* Partie boutons
+            margin: v.$font-medium 0 v.$font-large; // Pour espacer le bloc en hauteur
+            //? Bloc entier
+            &--container {
+                // On écarte le bouton supprimer, des boutons annuler et valider
+                display: flex;
+                flex-direction: column-reverse;
+                // align-items: center;
+
+                //? Boutons Annuler et Valider
+                &--group {
+                    // On regroupe les boutons annuler et valider
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: v.$font-medium;
+                }
+                //? Style de tous les boutons
+                &--submit,
+                &--delete,
+                &--visible,
+                &--cancel {
+                    padding: v.$font-xsmall v.$font-medium; // Pour agrandir la surface du bouton
+                }
+                //? Bouton Supprimer
+                &--delete {
+                    width: 30rem;
+                }
+                // //? Bouton Annuler
+                &--cancel {
+                    border-right: none; // Pour coller le bouton avec le bouton valider
+                    border-radius: v.$border-radius 0 0 v.$border-radius; // Pour rendre droit la face commune avec valider
+                    width: 15rem;
+                }
+                //? Bouton Valider
+                &--updatedMode {
+                    border-radius: 0 v.$border-radius v.$border-radius 0; // Pour rendre droit la face commune avec annuler
+                    width: 100%; // Largeur du container
+                    width: 15rem;
+                }
+                //? Bouton Modifier
+                &--visible {
+                    width: 25rem;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-small) {
+        width: 95%; // Largeur du container
+        max-width: 40rem; // Largeur du container
+        font-size: v.$font-xsmall; // Taille de la police
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-xsmall;
+            font-size: v.$font-small;
+        }
+        // ? En-tête
+        &--header {
+            margin: v.$font-xlarge 0 v.$font-small 0;
+
+            &--container {
+                flex-direction: column-reverse;
+                //* Bloc complet sans le message d'erreur
+                //? Titre
+                &--title {
+                    position: relative;
+                    top: unset;
+                    left: unset;
+                    transform: unset;
+                    margin: v.$font-small;
+                    text-align: center;
+                    font-size: v.$font-medium;
+                }
+                &--image {
+                    width: fit-content; // Aide au placement de l'icône d'upload
+                    margin: 0 auto; // Centre le container
+                    &--profil {
+                        margin: 0;
+                        width: 11rem;
+                        border: 2px solid v.$color-darkest;
+                    }
+                    &--upload {
+                        position: absolute;
+                        bottom: 7%;
+                        right: 10%;
+                        width: 15%;
+                    }
+                    &--contact {
+                        & a {
+                            padding: v.$font-small v.$font-medium; // Pour agrandir la surface du bouton
+                        }
+                    }
+                }
+            }
+            &--errorMessage {
+                //* Message d'erreur sous l'image
+                display: block; // Pour que le message puisse être centré
+                margin: v.$font-xsmall auto;
+                font-size: 0.9rem;
+            }
+        }
+        &--content {
+            //* Formulaire
+            &--firstField {
+                //* Partie informations personnelles
+                //? 4 zones dans cette partie :
+                // 1. Nom, prénom, pseudo, email (//?inputText)
+                // 2. Mot de passe (//?password)
+                // 3. Description (//?description)
+                // 4. Ouvert à de nouvelles opportunités (//?openToWork)
+                &--inputText {
+                    margin: v.$font-xsmall 0 0;
+                    //? 1ere partie
+                    grid-template-columns: repeat(1, 1fr); // 2 champs por ligne
+                    gap: 0;
+                    &--firstname,
+                    &--lastname,
+                    &--email,
+                    &--pseudo {
+                        width: 90%; // Largeur des champs
+                    }
+                }
+                &--password,
+                &--password--button {
+                    //? 2eme partie
+                    width: 65%;
+
+                    &--button {
+                        margin: v.$font-xxsmall auto;
+                        padding: v.$font-small v.$font-small;
+                        border: 0.1rem solid v.$color;
+                        font-size: v.$font-xsmall;
+                    }
+                }
+                &--description {
+                    //? 3eme partie
+                    width: 90%; // Pour que la largeur soit égale à celle de la partie 1
+                    &--reading {
+                        margin: v.$font-xsmall 0;
+                        padding: v.$font-xsmall;
+                    }
+                }
+                &--openToWork {
+                    //? 4eme partie
+                    margin: 0 auto v.$font-xxsmall;
+                    &--text {
+                        padding-right: v.$font-xxsmall;
+                    }
+                }
+            }
+            &--secondField {
+                //* Partie languages
+                //? Technos
+                &--container {
+                    margin: v.$font-small 0;
+                    &--text {
+                        font-size: v.$font-xxsmall;
+                    }
+                    &--technos {
+                        //? Liste des technos
+                        grid-template-columns: repeat(
+                            2,
+                            1fr
+                        ); // 2 languages par lignes
+                        margin: v.$font-small 0;
+                        padding: v.$font-xsmall v.$font-small;
+                        &--group,
+                        &--group--selected {
+                            //? Bloc image + texte
+                            gap: v.$font-xsmall;
+                            margin: v.$font-xxsmall v.$font-small;
+                            & img {
+                                width: v.$font-small;
+                                height: v.$font-small;
+                            }
+                            &--selected {
+                                padding: 0.3rem v.$font-xxsmall;
+                                width: 80%;
+                                border: 2px solid rgb(91, 166, 91);
+                            }
+                        }
+                    }
+                }
+            }
+            &--thirdField {
+                //* Partie projets
+                height: 300px; // Adapter à la hauteur du carousel
+            }
+        }
+        &--fourthField {
+            //* Partie boutons
+            margin: v.$font-small 0 v.$font-medium; // Pour espacer le bloc en hauteur
+            //? Bloc entier
+            &--container {
+                // On écarte le bouton supprimer, des boutons annuler et valider
+                display: flex;
+                flex-direction: column-reverse;
+                //? Boutons Annuler et Valider
+                &--group {
+                    // On regroupe les boutons annuler et valider
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: v.$font-small;
+                }
+                //? Style de tous les boutons
+                &--submit,
+                &--delete,
+                &--visible,
+                &--cancel {
+                    padding: v.$font-xsmall v.$font-medium; // Pour agrandir la surface du bouton
+                }
+                //? Bouton Supprimer
+                &--delete {
+                    width: 26rem;
+                }
+                // //? Bouton Annuler
+                &--cancel {
+                    border-right: none; // Pour coller le bouton avec le bouton valider
+                    border-radius: v.$border-radius 0 0 v.$border-radius; // Pour rendre droit la face commune avec valider
+                    width: 13rem;
+                }
+                //? Bouton Valider
+                &--updatedMode {
+                    border-radius: 0 v.$border-radius v.$border-radius 0; // Pour rendre droit la face commune avec annuler
+                    width: 100%; // Largeur du container
+                    width: 13rem;
+                }
+                //? Bouton Modifier
+                &--visible {
+                    width: 20rem;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+        width: 95%; // Largeur du container
+        font-size: v.$font-xsmall; // Taille de la police
+        // ? Sous titre
+        &--legend {
+            margin-top: v.$font-xsmall;
+            font-size: v.$font-small;
+        }
+        // ? En-tête
+        &--header {
+            margin: v.$font-xxlarge 0 v.$font-xsmall 0;
+
+            &--container {
+                flex-direction: column-reverse;
+                //* Bloc complet sans le message d'erreur
+                //? Titre
+                &--title {
+                    position: relative;
+                    top: unset;
+                    left: unset;
+                    transform: unset;
+                    margin: v.$font-xsmall;
+                    text-align: center;
+                    font-size: v.$font-medium;
+                }
+                &--image {
+                    width: fit-content; // Aide au placement de l'icône d'upload
+                    margin: 0 auto; // Centre le container
+                    &--profil {
+                        margin: 0 auto;
+                        width: 8rem;
+                        border: 2px solid v.$color-darkest;
+                    }
+                    &--upload {
+                        position: absolute;
+                        bottom: 7%;
+                        right: 10%;
+                        width: 15%;
+                    }
+                    &--contact {
+                        & a {
+                            padding: v.$font-small v.$font-medium; // Pour agrandir la surface du bouton
+                        }
+                    }
+                }
+            }
+            &--errorMessage {
+                //* Message d'erreur sous l'image
+                display: block; // Pour que le message puisse être centré
+                margin: v.$font-xsmall auto;
+                font-size: 0.7rem;
+            }
+        }
+        &--content {
+            //* Formulaire
+            &--firstField {
+                //* Partie informations personnelles
+                //? 4 zones dans cette partie :
+                // 1. Nom, prénom, pseudo, email (//?inputText)
+                // 2. Mot de passe (//?password)
+                // 3. Description (//?description)
+                // 4. Ouvert à de nouvelles opportunités (//?openToWork)
+                &--inputText {
+                    margin: v.$font-xsmall 0 0;
+                    //? 1ere partie
+                    grid-template-columns: repeat(1, 1fr); // 2 champs por ligne
+                    gap: 0;
+                    &--firstname,
+                    &--lastname,
+                    &--email,
+                    &--pseudo {
+                        width: 90%; // Largeur des champs
+                    }
+                }
+                &--password,
+                &--password--button {
+                    //? 2eme partie
+                    width: 90%;
+
+                    &--button {
+                        margin: v.$font-xxsmall auto;
+                        padding: v.$font-small v.$font-small;
+                        border: 0.1rem solid v.$color;
+                        font-size: v.$font-xsmall;
+                    }
+                }
+                &--description {
+                    //? 3eme partie
+                    width: 90%; // Pour que la largeur soit égale à celle de la partie 1
+                    &--reading {
+                        margin: v.$font-xsmall 0;
+                        padding: v.$font-xsmall;
+                    }
+                }
+                &--openToWork {
+                    //? 4eme partie
+                    margin: 0 auto v.$font-xxsmall;
+                    &--text {
+                        padding-right: v.$font-xxsmall;
+                    }
+                }
+            }
+            &--secondField {
+                //* Partie languages
+                //? Technos
+                &--container {
+                    margin: v.$font-xsmall 0;
+                    &--text {
+                        font-size: v.$font-xxsmall;
+                    }
+                    &--technos {
+                        //? Liste des technos
+                        grid-template-columns: repeat(
+                            2,
+                            1fr
+                        ); // 2 languages par lignes
+                        margin: v.$font-xsmall 0;
+                        padding: v.$font-xxsmall v.$font-xsmall;
+                        &--group,
+                        &--group--selected {
+                            //? Bloc image + texte
+                            gap: v.$font-xxsmall;
+                            margin: v.$font-xxsmall v.$font-xsmall;
+                            & img {
+                                width: v.$font-small;
+                                height: v.$font-small;
+                            }
+                            &--selected {
+                                padding: 0.2rem v.$font-xxsmall;
+                                width: 75%;
+                                border: 1px solid rgb(91, 166, 91);
+                            }
+                        }
+                    }
+                }
+            }
+            &--thirdField {
+                //* Partie projets
+                height: 250px; // Adapter à la hauteur du carousel
+            }
+        }
+        &--fourthField {
+            //* Partie boutons
+            margin: v.$font-small 0 v.$font-medium; // Pour espacer le bloc en hauteur
+            //? Bloc entier
+            &--container {
+                // On écarte le bouton supprimer, des boutons annuler et valider
+                display: flex;
+                flex-direction: column-reverse;
+                //? Boutons Annuler et Valider
+                &--group {
+                    // On regroupe les boutons annuler et valider
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: v.$font-small;
+                }
+                //? Style de tous les boutons
+                &--submit,
+                &--delete,
+                &--visible,
+                &--cancel {
+                    padding: v.$font-xsmall v.$font-medium; // Pour agrandir la surface du bouton
+                }
+                //? Bouton Supprimer
+                &--delete {
+                    width: 26rem;
+                }
+                // //? Bouton Annuler
+                &--cancel {
+                    border-right: none; // Pour coller le bouton avec le bouton valider
+                    border-radius: v.$border-radius 0 0 v.$border-radius; // Pour rendre droit la face commune avec valider
+                    width: 13rem;
+                }
+                //? Bouton Valider
+                &--updatedMode {
+                    border-radius: 0 v.$border-radius v.$border-radius 0; // Pour rendre droit la face commune avec annuler
+                    width: 100%; // Largeur du container
+                    width: 13rem;
+                }
+                //? Bouton Modifier
+                &--visible {
+                    width: 15em;
+                }
+            }
+        }
+    }
+}
+
+// ! Carousel
+//? Container
+.react-multi-carousel-list {
+    position: absolute;
+    width: 100%;
+    @media screen and (min-width: v.$mq-large) {
+        margin: v.$font-small auto;
+        height: 370px;
+    }
+    @media screen and (max-width: v.$mq-large) {
+        margin: v.$font-xsmall auto;
+        height: 310px;
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        margin: v.$font-xsmall auto;
+        height: 295px;
+    }
+    @media screen and (max-width: v.$mq-small) {
+        margin: v.$font-xxsmall auto;
+        height: 245px;
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+        margin: v.$font-xxsmall auto;
+        height: 190px;
+    }
+}
+
+//? Un projet
+.react-multi-carousel-item {
+    // padding-bottom: 2rem; // Déplace les dots plus bas
+    opacity: 0.4; // Les cartes sont légèrement transparentes
+    &--active {
+        opacity: 1; // Sauf celle active
+    }
+}
+
+//? Les flèches
+.react-multiple-carousel__arrow {
+    position: absolute;
+    margin: 0 0.4rem;
+    height: 94%;
+    background: v.$color-input;
+    opacity: 0.5; // Les flèches sont légèrement transparentes
+    &--left {
+        border-radius: v.$border-radius 0 0 v.$border-radius;
+        left: 2%;
+    }
+    &--right {
+        right: 2%;
+        border-radius: 0 v.$border-radius v.$border-radius 0;
+    }
+    &::before {
+        color: v.$color-darkest;
+    }
+    &:hover {
+        background: v.$color-dark;
+        opacity: 0.8; // Sauf au survol
+        &::before {
+            color: v.$color;
+        }
+    }
+    @media screen and (min-width: v.$mq-large) {
+        &::before {
+            font-size: v.$font-xlarge;
+        }
+    }
+    @media screen and (max-width: v.$mq-large) {
+        &::before {
+            font-size: v.$font-large;
+        }
+    }
+    @media screen and (max-width: v.$mq-medium) {
+        &::before {
+            font-size: v.$font-medium;
+        }
+    }
+    @media screen and (max-width: v.$mq-small) {
+    }
+    @media screen and (max-width: v.$mq-xsmall) {
+    }
+}

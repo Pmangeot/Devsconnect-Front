@@ -1,0 +1,32 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/mixins' as m; // @include pour utiliser
+
+//? Container des cartes
+.Members {
+    flex-grow: 1; // Permet de descendre le footer en bas de page
+    //? Titre
+    &--title {
+        text-align: center;
+        padding: v.$font-xsmall;
+        font-size: v.$font-large;
+    }
+    //? Container des cartes
+    &--containerCard {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap; // Permet de mettre les cartes en ligne
+        gap: 2rem 1rem;
+        margin: 0 auto; // Permet de centrer les cartes
+        padding: v.$font-xsmall;
+    }
+    @media screen and (min-width: 1400px) {
+        &--containerCard {
+            max-width: 140rem; // Permet de limiter la largeur du container
+        }
+    }
+    @media screen and (max-width: 1400px) {
+        &--containerCard {
+            max-width: 140rem; // Permet de limiter la largeur du container
+        }
+    }
+}
